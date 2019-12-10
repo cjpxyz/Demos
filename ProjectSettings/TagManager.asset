@@ -20,6 +20,9 @@ TagManager:
   - CompanionAI
   - Boss
   - Grab
+  - SkyboxCamera
+  - Hook
+  - Hookable
   layers:
   - Default
   - TransparentFX
