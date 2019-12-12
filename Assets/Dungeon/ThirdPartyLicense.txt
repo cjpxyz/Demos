@@ -1,0 +1,22 @@
+This asset is governed by the Asset Store EULA; however, the following components are governed by the licenses indicated below:
+
+Oculus SDK
+Copyright © 2014-2017 Oculus VR, LLC All rights reserved.
+https://developer.oculus.com/licenses/
+
+SteamVR plugin for Unity - v1.2.2
+Copyright (c) Valve Corporation, All rights reserved.
+
+VRTK
+MIT License
+
+
+Thanks to the following persons for releasing there content under the CC0 license.
+
+altar_01 	by Geoffrey Marchal 	https://sketchfab.com/models/c4b690f510b14f3bb5dadb19b7df8ef5
+lion 	by Guillermo 	https://sketchfab.com/models/f0e2bcfd5dab4cb88dd3d214b8b3e286
+statue_relief_01	by Calin Suteu	https://sketchfab.com/models/a6cfb8ec12f34eba88957cfa9cbf65ad
+statue_relief_02+03 	by Calin Suteu	https://sketchfab.com/models/892f20a8252741588b563e3589e7fbe9
+
+Background Audio by burning-mir
+https://freesound.org/people/burning-mir/sounds/117358/
