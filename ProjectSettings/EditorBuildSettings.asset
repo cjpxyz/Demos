@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/VRTK/LegacyExampleFiles/014_Controller_SnappingObjectsOnGrab.unity
-    guid: f199cdb1d105b444fb643b37c4ea143f
+    path: Assets/_Scenes/LaserTagDemo.unity
+    guid: f828e7fa02424cd44a37930f85f076e6
   m_configObjects: {}
