@@ -6,11 +6,7 @@ using UnityEngine.UI;
 
 public class VRFPS_SceneManager : MonoBehaviour
 {
-    public GameObject mainCanvas;
-    public GameObject camCanvas;
-
-    public GameObject initialContainer;
-    public GameObject loadingContainer;
+    public static VRFPS_SceneManager instance;
 
     public string sceneToLoadMap1;
     public string sceneToLoadMap2;
@@ -25,6 +21,20 @@ public class VRFPS_SceneManager : MonoBehaviour
     private float tempval;
     private AsyncOperation async;
     private bool canLoading;
+
+    void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Update()
     {
@@ -61,8 +71,8 @@ public class VRFPS_SceneManager : MonoBehaviour
 
     IEnumerator LoadingScene(string scene)
     {
-        initialContainer.SetActive(false);
-        loadingContainer.SetActive(true);
+        VRFPS_CanvasController.instance.initialMenuScreen.SetActive(false);
+        VRFPS_CanvasController.instance.loadingScreen.SetActive(true);
         canLoading = true;
         tempval = 0;
 
@@ -72,8 +82,10 @@ public class VRFPS_SceneManager : MonoBehaviour
         async = SceneManager.LoadSceneAsync("VRFPS_MapDungeon", LoadSceneMode.Additive);//add the next scene name that to be loaded
         yield return async;
 
-        loadingContainer.SetActive(false);
+        VRFPS_CanvasController.instance.loadingScreen.SetActive(false);
         canLoading = false;
+
+        VRFPS_GameController.instance.StartGame();
     }
 
     IEnumerator Fixed(string scene)

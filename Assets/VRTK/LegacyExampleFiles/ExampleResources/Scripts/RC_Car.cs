@@ -49,7 +49,7 @@
             CalculateSpeed();
             Move();
             Turn();
-            Jump();
+            //Jump();
         }
 
         private void CalculateSpeed()

@@ -23,6 +23,7 @@ TagManager:
   - SkyboxCamera
   - Hook
   - Hookable
+  - Target
   layers:
   - Default
   - TransparentFX

@@ -37,17 +37,26 @@ public class Weapon : MonoBehaviour
 
     IEnumerator FireWeaponSimulator()
     {
-        audioSource.Play();
+        //audioSource.Play();
 
-        var muzzleFlash = Instantiate(muzzleflashPrefab, muzzlePoint.position, muzzlePoint.rotation);
-        Destroy(muzzleFlash.gameObject, .5f);
+        //var muzzleFlash = Instantiate(muzzleflashPrefab, muzzlePoint.position, muzzlePoint.rotation);
+        //Destroy(muzzleFlash.gameObject, .5f);
 
-        var bullet = Instantiate(bulletPrefab, muzzlePoint.position, muzzlePoint.rotation);
-        Destroy(bullet.gameObject, 2.0f);
-        bullet.transform.parent = null;
+        if (VRFPS_GameController.instance.initialAmmoCount <= 0)
+        {
+            yield break;
+        }
+
+        GameObject bulletClone = Instantiate(bulletPrefab, muzzlePoint.position, muzzlePoint.rotation) as GameObject;
+        bulletClone.SetActive(true);
+        Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
+        rb.AddForce(muzzlePoint.forward * 14.0f, ForceMode.Impulse);
+        Destroy(bulletClone, 3f);
+
+        VRFPS_GunController.instance.RemoveBullet();
 
         yield return new WaitForSeconds(0.05f); 
-        bullet.gameObject.GetComponent<Rigidbody>().AddForce(muzzlePoint.forward * 40, ForceMode.Impulse);
+        //bullet.gameObject.GetComponent<Rigidbody>().AddForce(muzzlePoint.forward * 40, ForceMode.Impulse);
     }
 
     void Update()
