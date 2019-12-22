@@ -15,6 +15,7 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject initialMenuScreen;
     public GameObject gameplayScreen;
     public GameObject loadingScreen;
+    public GameObject mainBG;
 
     [Header("Gameplay")]
     [Space(2)]

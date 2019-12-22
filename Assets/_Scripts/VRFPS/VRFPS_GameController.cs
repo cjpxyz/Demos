@@ -17,6 +17,10 @@ public class VRFPS_GameController : MonoBehaviour
     public bool macthEnd = false;
 
     public float matchTime;
+    public bool isConnectedInPhoton;
+
+    public GameObject playerVRPrefab;
+    public GameObject vRScriptsPrefab;
 
     void Awake()
     {
@@ -51,5 +55,18 @@ public class VRFPS_GameController : MonoBehaviour
     {
         VRFPS_CanvasController.instance.SetInitialGameInfos();
         canStartMacth = true;
+
+        StartCoroutine(StartSequence());
     }
+
+    private IEnumerator StartSequence()
+    {
+        PhotonNetwork.Instantiate(playerVRPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+
+        yield return new WaitForSeconds (0.5f);
+        GameObject vrScripts = Instantiate(vRScriptsPrefab);
+
+        yield return new WaitUntil(() => isConnectedInPhoton);
+        VRFPS_CanvasController.instance.mainBG.SetActive(false);
+    } 
 }

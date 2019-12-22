@@ -17,8 +17,8 @@ public class P2PManager
 
     public P2PManager()
     {
-        Net.SetPeerConnectRequestCallback(PeerConnectRequestCallback);
-        Net.SetConnectionStateChangedCallback(ConnectionStateChangedCallback);
+        //Net.SetPeerConnectRequestCallback(PeerConnectRequestCallback);
+        //Net.SetConnectionStateChangedCallback(ConnectionStateChangedCallback);
     }
 
     #region Connection Management
@@ -49,19 +49,19 @@ public class P2PManager
 
     void PeerConnectRequestCallback(Message<NetworkingPeer> msg)
     {
-        SocialPlatformManager.LogOutput("P2P request from " + msg.Data.ID);
+        /*SocialPlatformManager.LogOutput("P2P request from " + msg.Data.ID);
 
         RemotePlayer remote = SocialPlatformManager.GetRemoteUser(msg.Data.ID);
         if (remote != null)
         {
             SocialPlatformManager.LogOutput("P2P request accepted from " + msg.Data.ID);
             Net.Accept(msg.Data.ID);
-        }
+        }*/
     }
 
     void ConnectionStateChangedCallback(Message<NetworkingPeer> msg)
     {
-        SocialPlatformManager.LogOutput("P2P state to " + msg.Data.ID + " changed to  " + msg.Data.State);
+        /*SocialPlatformManager.LogOutput("P2P state to " + msg.Data.ID + " changed to  " + msg.Data.State);
 
         RemotePlayer remote = SocialPlatformManager.GetRemoteUser(msg.Data.ID);
         if (remote != null)
@@ -76,7 +76,7 @@ public class P2PManager
                 Net.Connect(msg.Data.ID);
                 SocialPlatformManager.LogOutput("P2P re-connect to " + msg.Data.ID);
             }
-        }
+        }*/
     }
 
     #endregion

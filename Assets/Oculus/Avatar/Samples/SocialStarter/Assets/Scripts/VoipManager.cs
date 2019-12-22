@@ -10,8 +10,8 @@ public class VoipManager
 {
     public VoipManager()
     {
-        Voip.SetVoipConnectRequestCallback(VoipConnectRequestCallback);
-        Voip.SetVoipStateChangeCallback(VoipStateChangedCallback);
+        //Voip.SetVoipConnectRequestCallback(VoipConnectRequestCallback);
+        //Voip.SetVoipStateChangeCallback(VoipStateChangedCallback);
     }
 
     public void ConnectTo(ulong userID)
@@ -41,21 +41,21 @@ public class VoipManager
 
     void VoipConnectRequestCallback(Message<NetworkingPeer> msg)
     {
-        SocialPlatformManager.LogOutput("Voip request from " + msg.Data.ID);
+        /*SocialPlatformManager.LogOutput("Voip request from " + msg.Data.ID);
 
         RemotePlayer remote = SocialPlatformManager.GetRemoteUser(msg.Data.ID);
         if (remote != null)
         {
             SocialPlatformManager.LogOutput("Voip request accepted from " + msg.Data.ID);
             Voip.Accept(msg.Data.ID);
-        }
+        }*/
     }
 
     void VoipStateChangedCallback(Message<NetworkingPeer> msg)
     {
-        SocialPlatformManager.LogOutput("Voip state to " + msg.Data.ID + " changed to  " + msg.Data.State);
+        //SocialPlatformManager.LogOutput("Voip state to " + msg.Data.ID + " changed to  " + msg.Data.State);
 
-        RemotePlayer remote = SocialPlatformManager.GetRemoteUser(msg.Data.ID);
+        /*RemotePlayer remote = SocialPlatformManager.GetRemoteUser(msg.Data.ID);
         if (remote != null)
         {
             remote.voipConnectionState = msg.Data.State;
@@ -67,6 +67,6 @@ public class VoipManager
                 Voip.Start(msg.Data.ID);
                 SocialPlatformManager.LogOutput("Voip re-connect to " + msg.Data.ID);
             }
-        }
+        }*/
     }
 }
