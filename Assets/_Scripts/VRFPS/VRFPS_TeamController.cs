@@ -10,7 +10,11 @@ public class VRFPS_TeamController : MonoBehaviour
 
     public void WasHit()
     {
-        VRFPS_CanvasController.instance.AddPointToTeam(myTeam);
+        if (VRFPS_CanvasController.instance != null)
+        {
+            VRFPS_CanvasController.instance.AddPointToTeam(myTeam);
+        }
+
         Destroy(gameObject);
     }
 }

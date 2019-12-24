@@ -9,6 +9,7 @@ public class VRFPS_BulletController : MonoBehaviour
         if (other.tag == "Target")
         {
             other.GetComponent<VRFPS_TeamController>().WasHit();
+            Debug.Log("Get target!");
         }
     }
 }

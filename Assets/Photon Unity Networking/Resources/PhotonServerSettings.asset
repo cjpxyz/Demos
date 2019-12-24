@@ -15,7 +15,7 @@ MonoBehaviour:
   AppID: 7aed53ce-7f9e-43b5-ae31-85e6a3d56112
   VoiceAppID: 
   ChatAppID: 7aed53ce-7f9e-43b5-ae31-85e6a3d56112
-  HostType: 1
+  HostType: 4
   PreferredRegion: 0
   EnabledRegions: -1
   Protocol: 0
@@ -43,4 +43,8 @@ MonoBehaviour:
   - RequestForPickupItems
   - RequestForPickupTimes
   - TaggedPlayer
+  - NetFire
+  - NetPlayClipAtPoint
+  - SetPanoramaFromObject
+  - SpawnAvatar
   DisableAutoOpenWizard: 1

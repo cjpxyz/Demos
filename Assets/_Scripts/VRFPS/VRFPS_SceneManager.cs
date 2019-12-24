@@ -50,7 +50,7 @@ public class VRFPS_SceneManager : MonoBehaviour
             }
             catch (NullReferenceException ex)
             {
-                Debug.Log("Async not loaded!");
+                //Debug.Log("Async not loaded!");
             }
         }
     }
