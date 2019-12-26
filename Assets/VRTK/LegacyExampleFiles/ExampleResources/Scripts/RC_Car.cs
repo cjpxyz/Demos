@@ -94,6 +94,28 @@
 
             float moveMod = Time.deltaTime * playerMoveMultiplier * playerSprintMultiplier;
             transform.Translate(transform.forward * moveMod, Space.World);
+
+            if(touchAxis.x == 0 || touchAxis.y == 0)
+            {
+                moveMod = 0;
+            }
+
+            if (touchAxis.y > 0.0)
+            {
+                transform.Translate(transform.forward * moveMod, Space.World);
+            }
+            else if (touchAxis.y < 0.0)
+            {
+                transform.Translate(-transform.forward * moveMod, Space.World);
+            }
+            if (touchAxis.x > 0.0)
+            {
+                transform.Translate(-transform.right * moveMod, Space.World);
+            }
+            else if (touchAxis.x < 0.0)
+            {
+                transform.Translate(transform.right * moveMod, Space.World);
+            }
         }
 
         private void Turn()
