@@ -40,7 +40,9 @@ public class VRFPS_CanvasController : MonoBehaviour
 
     void Awake()
     {
-        if (!instance)
+        instance = this;
+
+        /*if (!instance)
         {
             instance = this;
         }
@@ -49,7 +51,7 @@ public class VRFPS_CanvasController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);*/
     }
 
     public void SetInitialGameInfos()
@@ -61,9 +63,24 @@ public class VRFPS_CanvasController : MonoBehaviour
         mapContainer.SetActive(true);
         roundInfosContainer.SetActive(true);
 
+        healthBar.GetComponent<Image>().fillAmount = 1;
+
         ammoCount.GetComponent<Text>().text = "00" + VRFPS_GameController.instance.initialAmmoCount;
         roundTimeCount.GetComponent<Text>().text = "0" + VRFPS_GameController.instance.matchTime + ":00";
         roundCount.GetComponent<Text>().text = "" + (VRFPS_GameController.instance.initialTotalRounds - VRFPS_GameController.instance.initialTotalRounds);
+    }
+
+    public void GetHit(int team, string playerName)
+    {
+        /*if((VRFPS_GameController.instance.initialHealth - VRFPS_GameController.instance.initialHitDemage) >= 0)
+        {
+            VRFPS_GameController.instance.initialHealth -= VRFPS_GameController.instance.initialHitDemage;
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_GameController.instance.initialHealth / 100;
+        }
+        else
+        {
+            AddPointToTeam(team);
+        }*/
     }
 
     public void AddPointToTeam(int team)

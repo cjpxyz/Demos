@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialAmmoCount: 50
   initialHealth: 100
+  initialHitDemage: 20
   initialTotalRounds: 3
   canStartMacth: 0
   macthEnd: 0

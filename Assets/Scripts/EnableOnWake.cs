@@ -6,7 +6,7 @@
 
         void Awake() {
             foreach (GameObject obj in objects) {
-                obj.SetActive(true);
+                //obj.SetActive(true);
             }
         }
 

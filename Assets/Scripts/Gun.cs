@@ -1,8 +1,10 @@
-﻿namespace PlayoVR {
+﻿namespace PlayoVR
+{
     using UnityEngine;
     using VRTK;
 
-    public class Gun : Photon.MonoBehaviour {
+    public class Gun : Photon.MonoBehaviour
+    {
         public GameObject bulletPrefab;
         public Transform bulletSpawn;
         public AudioClip fireGunSound;
@@ -11,30 +13,38 @@
         private bool fired;
 
         // Use this for initialization
-        void Awake() {
+        void Awake()
+        {
             GetComponent<VRTK_InteractableObject>().InteractableObjectUsed += new InteractableObjectEventHandler(DoFireGun);
         }
 
-        void DoFireGun(object sender, InteractableObjectEventArgs e) {
+        void DoFireGun(object sender, InteractableObjectEventArgs e)
+        {
             fired = true;
         }
 
         // Update is called once per frame
-        void Update() {
+        void Update()
+        {
             // Handle firing
-            if (fired) {
+            if (fired && VRFPS_GameController.instance.initialAmmoCount > 0)
+            {
                 CmdFire();
                 fired = false;
             }
         }
 
-        void CmdFire() {
+        void CmdFire()
+        {
             // Now create the bullet and play sound/animation locally and on all other clients
             photonView.RPC("NetFire", PhotonTargets.All, bulletSpawn.position, bulletSpawn.rotation);
         }
 
         [PunRPC]
-        void NetFire(Vector3 position, Quaternion rotation) {
+        void NetFire(Vector3 position, Quaternion rotation)
+        {
+            //VRFPS_GunController.instance.RemoveBullet();
+
             // Create the Bullet from the Bullet Prefab
             var bullet = Instantiate(
                 bulletPrefab,

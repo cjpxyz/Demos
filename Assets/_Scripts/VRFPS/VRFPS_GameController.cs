@@ -11,6 +11,7 @@ public class VRFPS_GameController : MonoBehaviour
     [Space(2)]
     public int initialAmmoCount;
     public int initialHealth;
+    public int initialHitDemage;
     public int initialTotalRounds;
 
     public bool canStartMacth;
@@ -61,19 +62,9 @@ public class VRFPS_GameController : MonoBehaviour
 
     private IEnumerator StartSequence()
     {
-        Debug.Log("!!!! 1");
-        if (PhotonNetwork.connected)
-        {
-            Debug.Log("!!!! 2");
-            PhotonNetwork.Instantiate(playerVRPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
-        }
-
-        Debug.Log("!!!! 3");
-
-        yield return new WaitForSeconds (0.1f);
-        GameObject vrScripts = Instantiate(vRScriptsPrefab);
-
+        Debug.Log("!!!! 1 StartSequence");
         yield return new WaitUntil(() => isConnectedInPhoton);
-        //VRFPS_CanvasController.instance.mainBG.SetActive(false);
+        VRFPS_CanvasController.instance.mainBG.SetActive(false);
+        Debug.Log("!!!! 2 StartSequence");
     } 
 }

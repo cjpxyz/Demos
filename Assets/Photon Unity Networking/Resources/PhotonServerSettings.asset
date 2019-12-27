@@ -47,4 +47,5 @@ MonoBehaviour:
   - NetPlayClipAtPoint
   - SetPanoramaFromObject
   - SpawnAvatar
+  - CallToEveryone
   DisableAutoOpenWizard: 1

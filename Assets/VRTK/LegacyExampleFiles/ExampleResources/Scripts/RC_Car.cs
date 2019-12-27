@@ -7,9 +7,9 @@
         public float maxAcceleration = 3f;
         public float jumpPower = 10f;
         [Tooltip("Adjust player movement speed.")]
-        public float playerMoveMultiplier = 5f;
+        public float playerMoveMultiplier;
         [Tooltip("Adjust player sprint speed.")]
-        public float playerSprintMultiplier = 2f;
+        public float playerSprintMultiplier;
 
         private float acceleration = 0.05f;
         private float movementSpeed = 0f;
@@ -24,13 +24,13 @@
         public void SetTouchAxis(Vector2 data)
         {
             touchAxis = data;
-            Debug.Log("touchAxis: " + touchAxis);
+            //Debug.Log("touchAxis: " + touchAxis);
         }
 
         public void SetTriggerAxis(float data)
         {
             triggerAxis = data;
-            Debug.Log("triggerAxis: " + triggerAxis);
+            //Debug.Log("triggerAxis: " + triggerAxis);
         }
 
         public void ResetCar()
@@ -93,18 +93,18 @@
             //rb.MovePosition(rb.position + movement);
 
             float moveMod = Time.deltaTime * playerMoveMultiplier * playerSprintMultiplier;
-            transform.Translate(transform.forward * moveMod, Space.World);
 
-            if(touchAxis.x == 0 || touchAxis.y == 0)
+            if(touchAxis.x == 0 && touchAxis.y == 0)
             {
                 moveMod = 0;
+                return;
             }
 
-            if (touchAxis.y > 0.0)
+            if (touchAxis.y < 0.0)
             {
                 transform.Translate(transform.forward * moveMod, Space.World);
             }
-            else if (touchAxis.y < 0.0)
+            else if (touchAxis.y > 0.0)
             {
                 transform.Translate(-transform.forward * moveMod, Space.World);
             }

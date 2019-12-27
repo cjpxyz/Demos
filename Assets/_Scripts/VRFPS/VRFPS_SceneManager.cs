@@ -71,7 +71,7 @@ public class VRFPS_SceneManager : MonoBehaviour
             StartCoroutine(Fixed("VRFPS_MapDungeon"));
         }
 
-        VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
+        //VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
     }
 
     IEnumerator LoadingScene(string scene)
@@ -81,7 +81,7 @@ public class VRFPS_SceneManager : MonoBehaviour
         canLoading = true;
         tempval = 0;
 
-        Debug.Log(tempval);
+        //Debug.Log(tempval);
 
         yield return new WaitForSeconds(0.1f);
         async = SceneManager.LoadSceneAsync("VRFPS_MapDungeon", LoadSceneMode.Additive);//add the next scene name that to be loaded
