@@ -100,19 +100,19 @@
                 //return;
             }
 
-            if (touchAxis.y < 0.0)
+            if (touchAxis.y > 0.0)
             {
                 transform.Translate(transform.forward * moveMod, Space.World);
             }
-            else if (touchAxis.y > 0.0)
+            else if (touchAxis.y < 0.0)
             {
                 transform.Translate(-transform.forward * moveMod, Space.World);
             }
-            if (touchAxis.x > 0.0)
+            if (touchAxis.x < 0.0)
             {
                 transform.Translate(-transform.right * moveMod, Space.World);
             }
-            else if (touchAxis.x < 0.0)
+            else if (touchAxis.x > 0.0)
             {
                 transform.Translate(transform.right * moveMod, Space.World);
             }

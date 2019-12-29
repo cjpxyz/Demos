@@ -29,19 +29,34 @@
         void Update()
         {
             // Handle firing
-            if (fired && VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets > 0)
+            if(VRFPS_GameController.instance != null)
             {
-                CmdFire();
-                fired = false;
+                if (fired && VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets > 0)
+                {
+                    CmdFire();
+                    fired = false;
+                }
             }
+            else
+            {
+                if (fired)
+                {
+                    CmdFire();
+                    fired = false;
+                }
+            }
+            
         }
 
         void CmdFire()
         {
-            // Now create the bullet and play sound/animation locally and on all other clients
-            VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets--;
-            VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets;
-            Debug.Log("Remove bullets from: " + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerName);
+            if (VRFPS_GameController.instance != null)
+            {
+                // Now create the bullet and play sound/animation locally and on all other clients
+                VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets--;
+                VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets;
+                Debug.Log("Remove bullets from: " + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerName);
+            }
 
             photonView.RPC("NetFire", PhotonTargets.All, bulletSpawn.position, bulletSpawn.rotation);
         }
