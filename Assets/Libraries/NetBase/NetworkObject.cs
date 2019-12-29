@@ -1,6 +1,7 @@
 ﻿namespace NetBase
 {
     using UnityEngine;
+    using UnityEngine.UI;
 
     [RequireComponent(typeof(PhotonView))]
     public class NetworkObject : Photon.MonoBehaviour
@@ -48,6 +49,8 @@
             {
                 playerHealth = VRFPS_GameController.instance.initialHealth;
             }
+
+            playerBullets = VRFPS_GameController.instance.initialAmmoCount;
         }
 
         void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -88,11 +91,10 @@
                     ci.Update(interpolationTime);
                 }
             }
-        }
 
-        public void GetDemage(float demage)
-        {
-            playerHealth -= demage;
+            Debug.Log("playerBullets: " + playerBullets + " / playerHealth" + playerHealth);
+            VRFPS_CanvasController.instance.healthBar.GetComponent<Image>().fillAmount = playerHealth / 100;
+            //VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + "!!" + playerBullets;
         }
 
         private double GetInterpolationBackTime()

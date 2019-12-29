@@ -65,7 +65,7 @@
 
         void InitPlayer(PhotonPlayer newPlayer)
         {
-            Debug.Log("!! Instantiate Player 0");
+            //Debug.Log("!! Instantiate Player 0");
             if (PhotonNetwork.isMasterClient && connected && sceneLoaded)
             {
                 // The master client tells everyone about the new player
@@ -74,7 +74,7 @@
                 newPlayer.SetCustomProperties(props);
                 photonView.RPC("SpawnAvatar", newPlayer);
 
-                Debug.Log("!! Instantiate Player 1");
+                //Debug.Log("!! Instantiate Player 1");
             }
         }
 
@@ -93,6 +93,8 @@
             var player = PhotonNetwork.Instantiate(playerAvatar.name, trans.position, trans.rotation, 0, new object[] { name });
 
             currentPlayer = player.gameObject;
+            VRFPS_GameController.instance.myAvatarObject = currentPlayer;
+            VRFPS_GameController.instance.inGameScene = true;
 
             if (VRFPS_NetworkController.instance.playersInRoom % 2 == 0)
             {

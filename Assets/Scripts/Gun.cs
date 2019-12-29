@@ -1,6 +1,8 @@
 ﻿namespace PlayoVR
 {
+    using NetBase;
     using UnityEngine;
+    using UnityEngine.UI;
     using VRTK;
 
     public class Gun : Photon.MonoBehaviour
@@ -27,7 +29,7 @@
         void Update()
         {
             // Handle firing
-            if (fired && VRFPS_GameController.instance.initialAmmoCount > 0)
+            if (fired && VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets > 0)
             {
                 CmdFire();
                 fired = false;
@@ -37,14 +39,16 @@
         void CmdFire()
         {
             // Now create the bullet and play sound/animation locally and on all other clients
+            VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets--;
+            VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets;
+            Debug.Log("Remove bullets from: " + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerName);
+
             photonView.RPC("NetFire", PhotonTargets.All, bulletSpawn.position, bulletSpawn.rotation);
         }
 
         [PunRPC]
         void NetFire(Vector3 position, Quaternion rotation)
         {
-            //VRFPS_GunController.instance.RemoveBullet();
-
             // Create the Bullet from the Bullet Prefab
             var bullet = Instantiate(
                 bulletPrefab,

@@ -48,4 +48,5 @@ MonoBehaviour:
   - SetPanoramaFromObject
   - SpawnAvatar
   - CallToEveryone
+  - DoDemageInOthers
   DisableAutoOpenWizard: 1

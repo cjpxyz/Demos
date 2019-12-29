@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NetBase;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,6 +23,9 @@ public class VRFPS_GameController : MonoBehaviour
 
     public GameObject playerVRPrefab;
     public GameObject vRScriptsPrefab;
+
+    public bool inGameScene;
+    public GameObject myAvatarObject;
 
     void Awake()
     {
@@ -48,7 +52,7 @@ public class VRFPS_GameController : MonoBehaviour
             string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
             VRFPS_CanvasController.instance.roundTimeCount.GetComponent<Text>().text = niceTime;
-            VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + initialAmmoCount;
+            //VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + initialAmmoCount;
         }
     }
 
@@ -62,9 +66,9 @@ public class VRFPS_GameController : MonoBehaviour
 
     private IEnumerator StartSequence()
     {
-        Debug.Log("!!!! 1 StartSequence");
         yield return new WaitUntil(() => isConnectedInPhoton);
+        VRFPS_CanvasController.instance.versionContainer.SetActive(false);
         VRFPS_CanvasController.instance.mainBG.SetActive(false);
-        Debug.Log("!!!! 2 StartSequence");
-    } 
+    }
+
 }

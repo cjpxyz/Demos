@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NetBase;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,7 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject initialMenuScreen;
     public GameObject gameplayScreen;
     public GameObject loadingScreen;
+    public GameObject versionContainer;
     public GameObject mainBG;
 
     [Header("Gameplay")]
@@ -40,9 +42,7 @@ public class VRFPS_CanvasController : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
-
-        /*if (!instance)
+        if (!instance)
         {
             instance = this;
         }
@@ -51,7 +51,7 @@ public class VRFPS_CanvasController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);*/
+        DontDestroyOnLoad(gameObject);
     }
 
     public void SetInitialGameInfos()

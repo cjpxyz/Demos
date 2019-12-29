@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using NetBase;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VRFPS_NetworkController : MonoBehaviour
+public class VRFPS_NetworkController : Photon.PunBehaviour
 {
     public static VRFPS_NetworkController instance;
 
@@ -50,5 +51,26 @@ public class VRFPS_NetworkController : MonoBehaviour
             team1Points = (int)stream.ReceiveNext();
             team2Points = (int)stream.ReceiveNext();
         }
+    }
+
+
+    public void GetDemage(string name, float demage)
+    {
+        photonView.RPC("DoDemageInOthers", PhotonTargets.AllBuffered, name, demage);
+    }
+
+    [PunRPC]
+    void DoDemageInOthers(string name, float demage)
+    {
+        if (name == "Player 1")
+        {
+            player1.GetComponent<NetworkObject>().playerHealth -= demage;
+        }
+        else if (name == "Player 2")
+        {
+            player2.GetComponent<NetworkObject>().playerHealth -= demage;
+        }
+
+        Debug.Log("Remove demage: " + demage + " / from: " + name);
     }
 }
