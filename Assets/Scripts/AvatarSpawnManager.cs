@@ -95,6 +95,7 @@
             currentPlayer = player.gameObject;
             VRFPS_GameController.instance.myAvatarObject = currentPlayer;
             VRFPS_GameController.instance.inGameScene = true;
+            VRFPS_GameController.instance.playerName = name;
 
             if (VRFPS_NetworkController.instance.playersInRoom % 2 == 0)
             {

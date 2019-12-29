@@ -26,6 +26,7 @@ public class VRFPS_GameController : MonoBehaviour
 
     public bool inGameScene;
     public GameObject myAvatarObject;
+    public string playerName;
 
     void Awake()
     {

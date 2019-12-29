@@ -92,8 +92,8 @@
                 }
             }
 
-            Debug.Log("playerBullets: " + playerBullets + " / playerHealth" + playerHealth);
-            VRFPS_CanvasController.instance.healthBar.GetComponent<Image>().fillAmount = playerHealth / 100;
+            //Debug.Log("playerBullets: " + playerBullets + " / playerHealth" + playerHealth);
+            //VRFPS_CanvasController.instance.healthBar.GetComponent<Image>().fillAmount = playerHealth / 100;
             //VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + "!!" + playerBullets;
         }
 

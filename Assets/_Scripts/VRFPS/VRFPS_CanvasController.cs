@@ -16,6 +16,9 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject initialMenuScreen;
     public GameObject gameplayScreen;
     public GameObject loadingScreen;
+    public GameObject deathScreen;
+    public GameObject loseScreen;
+    public GameObject winScreen;
     public GameObject versionContainer;
     public GameObject mainBG;
 
@@ -54,6 +57,42 @@ public class VRFPS_CanvasController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Update()
+    {
+        if (VRFPS_GameController.instance.playerName == "Player 1")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player1.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 2")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player2.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 3")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player3.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 4")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player4.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 5")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player5.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 6")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player6.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 7")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player7.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 8")
+        {
+            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player8.GetComponent<NetworkObject>().playerHealth / 100;
+        }
+    }
+
     public void SetInitialGameInfos()
     {
         gameplayScreen.SetActive(true);
@@ -75,7 +114,7 @@ public class VRFPS_CanvasController : MonoBehaviour
         /*if((VRFPS_GameController.instance.initialHealth - VRFPS_GameController.instance.initialHitDemage) >= 0)
         {
             VRFPS_GameController.instance.initialHealth -= VRFPS_GameController.instance.initialHitDemage;
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_GameController.instance.initialHealth / 100;
+            healthBar.GetComponent<Image>().fillAmount  m= VRFPS_GameController.instance.initialHealth / 100;
         }
         else
         {
@@ -95,5 +134,35 @@ public class VRFPS_CanvasController : MonoBehaviour
             currentTeam2Points++;
             roundTeam2Points.GetComponent<Text>().text = "" + currentTeam2Points;
         }
+    }
+
+    public void CallDeathScreen()
+    {
+        DisableAllScreens();
+        deathScreen.SetActive(true);
+    }
+
+    public void CallWinScreen()
+    {
+        DisableAllScreens();
+        winScreen.SetActive(true);
+    }
+
+    public void CallLoseScreen()
+    {
+        DisableAllScreens();
+        loseScreen.SetActive(true);
+    }
+
+    public void DisableAllScreens()
+    {
+        initialMenuScreen.SetActive(false);
+        gameplayScreen.SetActive(false);
+        loadingScreen.SetActive(false);
+        deathScreen.SetActive(false);
+        loseScreen.SetActive(false);
+        winScreen.SetActive(false);
+        versionContainer.SetActive(false);
+        mainBG.SetActive(false);
     }
 }

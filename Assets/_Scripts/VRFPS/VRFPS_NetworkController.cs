@@ -62,15 +62,47 @@ public class VRFPS_NetworkController : Photon.PunBehaviour
     [PunRPC]
     void DoDemageInOthers(string name, float demage)
     {
-        if (name == "Player 1")
+        if (VRFPS_GameController.instance.playerName == name)
         {
-            player1.GetComponent<NetworkObject>().playerHealth -= demage;
-        }
-        else if (name == "Player 2")
-        {
-            player2.GetComponent<NetworkObject>().playerHealth -= demage;
-        }
+            if ((player1.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+            {
+                VRFPS_CanvasController.instance.CallDeathScreen();
+            }
 
-        Debug.Log("Remove demage: " + demage + " / from: " + name);
+            if (name == "Player 1")
+            {
+                player1.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+            else if (name == "Player 2")
+            {
+                player2.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+            else if (name == "Player 3")
+            {
+                player3.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+            else if (name == "Player 4")
+            {
+                player4.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+            else if (name == "Player 5")
+            {
+                player5.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+            else if (name == "Player 6")
+            {
+                player6.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+            else if (name == "Player 7")
+            {
+                player7.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+            else if (name == "Player 8")
+            {
+                player8.GetComponent<NetworkObject>().playerHealth -= demage;
+            }
+
+            Debug.Log("Remove demage: " + demage + " / from: " + name);
+        }
     }
 }

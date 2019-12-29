@@ -74,6 +74,16 @@ public class VRFPS_SceneManager : MonoBehaviour
         //VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
     }
 
+    public void Respawn()
+    {
+
+    }
+
+    public void BackToMenu()
+    {
+
+    }
+
     IEnumerator LoadingScene(string scene)
     {
         VRFPS_CanvasController.instance.initialMenuScreen.SetActive(false);

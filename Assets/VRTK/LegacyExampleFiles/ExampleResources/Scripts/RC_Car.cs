@@ -97,7 +97,7 @@
             if(touchAxis.x == 0 && touchAxis.y == 0)
             {
                 moveMod = 0;
-                return;
+                //return;
             }
 
             if (touchAxis.y < 0.0)
