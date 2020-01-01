@@ -15,15 +15,19 @@ TagManager:
   - Ignore Ragdoll
   - Metal
   - Barrel
+  - Holsterable
   - Wood
+  - ExcludeTeleport
+  - projectile
   - AutoCrouch
+  - FxTemporaire
   - CompanionAI
-  - Boss
-  - Grab
-  - SkyboxCamera
-  - Hook
-  - Hookable
   - Target
+  - Hook
+  - TeleportIgnore
+  - PanoramaSource
+  - SkyboxCamera
+  - Boss
   layers:
   - Default
   - TransparentFX
