@@ -7,11 +7,13 @@
         public static string gameVersion = "0.4";
 
         [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
-        public byte MaxPlayersPerRoom = 4;
+        public byte MaxPlayersPerRoom = 8;
         public PhotonLogLevel Loglevel = PhotonLogLevel.Informational;
 
         void Awake()
         {
+            enabled = false;
+
             if (!PhotonNetwork.connecting && !PhotonNetwork.connected)
             {
                 PhotonNetwork.autoJoinLobby = false;    // we join randomly. always. no need to join a lobby to get the list of rooms.
