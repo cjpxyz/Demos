@@ -93,17 +93,21 @@
             var player = PhotonNetwork.Instantiate(playerAvatar.name, trans.position, trans.rotation, 0, new object[] { name });
 
             currentPlayer = player.gameObject;
-            VRFPS_GameController.instance.myAvatarObject = currentPlayer;
-            VRFPS_GameController.instance.inGameScene = true;
-            VRFPS_GameController.instance.playerName = name;
 
-            if (VRFPS_NetworkController.instance.playersInRoom % 2 == 0)
+            if (VRFPS_GameController.instance != null)
             {
-                player.gameObject.GetComponent<NetworkObject>().playerTeam = 1;
-            }
-            else
-            {
-                player.gameObject.GetComponent<NetworkObject>().playerTeam = 2;
+                VRFPS_GameController.instance.myAvatarObject = currentPlayer;
+                VRFPS_GameController.instance.inGameScene = true;
+                VRFPS_GameController.instance.playerName = name;
+
+                if (VRFPS_NetworkController.instance.playersInRoom % 2 == 0)
+                {
+                    player.gameObject.GetComponent<NetworkObject>().playerTeam = 1;
+                }
+                else
+                {
+                    player.gameObject.GetComponent<NetworkObject>().playerTeam = 2;
+                }
             }
 
             photonView.RPC("CallToEveryone", PhotonTargets.AllBuffered);
@@ -113,18 +117,24 @@
         void CallToEveryone()
         {
             //Debug.Log("CallToEveryone");
-            VRFPS_NetworkController.instance.playersInRoom++;
+            if (VRFPS_GameController.instance != null)
+            {
+                VRFPS_NetworkController.instance.playersInRoom++;
+            }
 
             currentPlayer.GetComponent<NetworkObject>().playerName = playerName(PhotonNetwork.player);
 
-            if (VRFPS_NetworkController.instance.playersInRoom == 1)
+            if (VRFPS_GameController.instance != null)
             {
-                VRFPS_NetworkController.instance.player1 = currentPlayer;
-            }
-            else if(VRFPS_NetworkController.instance.playersInRoom == 2)
-            {
-                VRFPS_NetworkController.instance.player2 = currentPlayer;
-                VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                if (VRFPS_NetworkController.instance.playersInRoom == 1)
+                {
+                    VRFPS_NetworkController.instance.player1 = currentPlayer;
+                }
+                else if (VRFPS_NetworkController.instance.playersInRoom == 2)
+                {
+                    VRFPS_NetworkController.instance.player2 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                }
             }
         }
 

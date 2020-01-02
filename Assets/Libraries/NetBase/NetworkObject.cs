@@ -48,9 +48,8 @@
             if (VRFPS_GameController.instance != null)
             {
                 playerHealth = VRFPS_GameController.instance.initialHealth;
+                playerBullets = VRFPS_GameController.instance.initialAmmoCount;
             }
-
-            playerBullets = VRFPS_GameController.instance.initialAmmoCount;
         }
 
         void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

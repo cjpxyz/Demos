@@ -59,7 +59,10 @@
 
         public override void OnJoinedRoom()
         {
-            VRFPS_GameController.instance.isConnectedInPhoton = true;
+            if (VRFPS_GameController.instance != null)
+            {
+                VRFPS_GameController.instance.isConnectedInPhoton = true;
+            }
             Debug.Log("Joined room");
         }
 

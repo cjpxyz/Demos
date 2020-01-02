@@ -547,7 +547,7 @@
                 hints += "Distance Pickup Right Hand: (" + key(distancePickupRight) + ")\n";
             }
 
-            hintText.text = hints.TrimEnd();
+            //hintText.text = hints.TrimEnd();
         }
 
         protected virtual bool IsAcceptingMouseInput()
