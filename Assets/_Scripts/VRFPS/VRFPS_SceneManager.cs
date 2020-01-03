@@ -70,13 +70,6 @@ public class VRFPS_SceneManager : MonoBehaviour
         {
             StartCoroutine(Fixed("VRFPS_MapDungeon"));
         }
-
-        //VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
-    }
-
-    public void Respawn()
-    {
-
     }
 
     public void BackToMenu()
@@ -97,10 +90,11 @@ public class VRFPS_SceneManager : MonoBehaviour
         async = SceneManager.LoadSceneAsync("VRFPS_MapDungeon", LoadSceneMode.Additive);//add the next scene name that to be loaded
         yield return async;
 
+        VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
+
         yield return new WaitUntil(() => VRFPS_GameController.instance.isConnectedInPhoton);
         VRFPS_CanvasController.instance.loadingScreen.SetActive(false);
         canLoading = false;
-
         VRFPS_GameController.instance.StartGame();
     }
 

@@ -49,13 +49,19 @@ MonoBehaviour:
   initialHitDemage: 20
   initialTotalRounds: 3
   canStartMacth: 0
+  canCountStartTime: 0
+  isInMatch: 0
   macthEnd: 0
+  startMatchTime: 10
   matchTime: 300
   isConnectedInPhoton: 0
   playerVRPrefab: {fileID: 85249107212341458, guid: 3b497779263984b44b8d2a6e3b2baa87,
     type: 3}
   vRScriptsPrefab: {fileID: 7876875791692635938, guid: f57e3d186643f544bb6e1a5147c6a389,
     type: 3}
+  inGameScene: 0
+  myAvatarObject: {fileID: 0}
+  playerName: 
 --- !u!114 &44405501
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 803273405533056451}
   - component: {fileID: 665967799511593145}
   - component: {fileID: 1013223800}
+  - component: {fileID: 387170382}
   m_Layer: 0
   m_Name: _PhotonController
   m_TagString: Untagged
@@ -56,3 +57,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0ba4b65a9cf2941929d68f7d8239e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &387170382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803273405533056450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69aa477300ef8e3458756b9f7607967e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playersInRoom: 0
+  team1Points: 0
+  team2Points: 0
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  player3: {fileID: 0}
+  player4: {fileID: 0}
+  player5: {fileID: 0}
+  player6: {fileID: 0}
+  player7: {fileID: 0}
+  player8: {fileID: 0}

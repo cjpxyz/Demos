@@ -351,6 +351,12 @@
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Assets/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
     </Reference>

@@ -1,4 +1,5 @@
-﻿using NetBase;
+﻿using DG.Tweening;
+using NetBase;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,10 @@ public class VRFPS_GameController : MonoBehaviour
     public int initialTotalRounds;
 
     public bool canStartMacth;
+    public bool canCountStartTime;
+    public bool isInMatch;
     public bool macthEnd = false;
+    public float startMatchTime;
 
     public float matchTime;
     public bool isConnectedInPhoton;
@@ -44,7 +48,7 @@ public class VRFPS_GameController : MonoBehaviour
 
     private void Update()
     {
-        if (canStartMacth && !macthEnd)
+        if (isInMatch && !macthEnd)
         {
             matchTime -= Time.deltaTime;
 
@@ -59,17 +63,38 @@ public class VRFPS_GameController : MonoBehaviour
 
     public void StartGame()
     {
-        VRFPS_CanvasController.instance.SetInitialGameInfos();
-        canStartMacth = true;
-
         StartCoroutine(StartSequence());
+    }
+
+    public void Respawn()
+    {
+
+    }
+
+    public void BackToMenu()
+    {
+        VRFPS_SceneManager.instance.BackToMenu();
     }
 
     private IEnumerator StartSequence()
     {
         yield return new WaitUntil(() => isConnectedInPhoton);
         VRFPS_CanvasController.instance.versionContainer.SetActive(false);
-        VRFPS_CanvasController.instance.mainBG.SetActive(false);
+        VRFPS_CanvasController.instance.mainBG.GetComponent<Image>().DOFade(1f, 0f);
+        VRFPS_CanvasController.instance.mainBG.SetActive(true);
+        VRFPS_CanvasController.instance.SemiSetInitialGameInfos();
+
+        canStartMacth = true;
+
+        yield return new WaitUntil(() => canStartMacth);
+        VRFPS_CanvasController.instance.mainBG.GetComponent<Image>().DOFade(0.9f, 2f);
+
+        canCountStartTime = true;
+
+        yield return new WaitForSeconds(startMatchTime);
+        VRFPS_CanvasController.instance.mainBG.GetComponent<Image>().DOFade(0.0f, 2f);
+        VRFPS_CanvasController.instance.SetInitialGameInfos();
+        isInMatch = true;
     }
 
 }

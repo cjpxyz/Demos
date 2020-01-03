@@ -30,6 +30,9 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject healthContainer;
     public GameObject healthBar;
 
+    public GameObject countScreen;
+    public GameObject countText;
+
     public GameObject mapContainer;
     public GameObject mapImage;
 
@@ -42,6 +45,8 @@ public class VRFPS_CanvasController : MonoBehaviour
     [HideInInspector]
     public int currentTeam1Points = 0;
     public int currentTeam2Points = 0;
+
+    
 
     void Awake()
     {
@@ -57,44 +62,79 @@ public class VRFPS_CanvasController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        DisableAllScreens();
+        initialMenuScreen.SetActive(true);
+        versionContainer.SetActive(true);
+    }
+
     void Update()
     {
-        if (VRFPS_GameController.instance.playerName == "Player 1")
+        if (VRFPS_GameController.instance.canCountStartTime)
         {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player1.GetComponent<NetworkObject>().playerHealth / 100;
+            VRFPS_GameController.instance.startMatchTime -= Time.deltaTime;
+            int seconds = (int)(VRFPS_GameController.instance.startMatchTime % 60);
+
+            countText.GetComponent<Text>().text = "" + seconds;
         }
-        else if (VRFPS_GameController.instance.playerName == "Player 2")
+
+        if (VRFPS_NetworkController.instance != null)
         {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player2.GetComponent<NetworkObject>().playerHealth / 100;
+            if (VRFPS_GameController.instance.playerName == "Player 1")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player1.GetComponent<NetworkObject>().playerHealth / 100;
+            }
+            else if (VRFPS_GameController.instance.playerName == "Player 2")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player2.GetComponent<NetworkObject>().playerHealth / 100;
+            }
+            else if (VRFPS_GameController.instance.playerName == "Player 3")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player3.GetComponent<NetworkObject>().playerHealth / 100;
+            }
+            else if (VRFPS_GameController.instance.playerName == "Player 4")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player4.GetComponent<NetworkObject>().playerHealth / 100;
+            }
+            else if (VRFPS_GameController.instance.playerName == "Player 5")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player5.GetComponent<NetworkObject>().playerHealth / 100;
+            }
+            else if (VRFPS_GameController.instance.playerName == "Player 6")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player6.GetComponent<NetworkObject>().playerHealth / 100;
+            }
+            else if (VRFPS_GameController.instance.playerName == "Player 7")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player7.GetComponent<NetworkObject>().playerHealth / 100;
+            }
+            else if (VRFPS_GameController.instance.playerName == "Player 8")
+            {
+                healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player8.GetComponent<NetworkObject>().playerHealth / 100;
+            }
         }
-        else if (VRFPS_GameController.instance.playerName == "Player 3")
-        {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player3.GetComponent<NetworkObject>().playerHealth / 100;
-        }
-        else if (VRFPS_GameController.instance.playerName == "Player 4")
-        {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player4.GetComponent<NetworkObject>().playerHealth / 100;
-        }
-        else if (VRFPS_GameController.instance.playerName == "Player 5")
-        {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player5.GetComponent<NetworkObject>().playerHealth / 100;
-        }
-        else if (VRFPS_GameController.instance.playerName == "Player 6")
-        {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player6.GetComponent<NetworkObject>().playerHealth / 100;
-        }
-        else if (VRFPS_GameController.instance.playerName == "Player 7")
-        {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player7.GetComponent<NetworkObject>().playerHealth / 100;
-        }
-        else if (VRFPS_GameController.instance.playerName == "Player 8")
-        {
-            healthBar.GetComponent<Image>().fillAmount = VRFPS_NetworkController.instance.player8.GetComponent<NetworkObject>().playerHealth / 100;
-        }
+    }
+
+    public void SemiSetInitialGameInfos()
+    {
+        gameplayScreen.SetActive(true);
+        countScreen.SetActive(true);
+        countText.SetActive(true);
+
+        ammoContainer.SetActive(false);
+        healthContainer.SetActive(false);
+        mapContainer.SetActive(false);
+        roundInfosContainer.SetActive(false);
+
+        healthBar.GetComponent<Image>().fillAmount = 1;
     }
 
     public void SetInitialGameInfos()
     {
+        countScreen.SetActive(false);
+        countText.SetActive(false);
+
         gameplayScreen.SetActive(true);
 
         ammoContainer.SetActive(true);

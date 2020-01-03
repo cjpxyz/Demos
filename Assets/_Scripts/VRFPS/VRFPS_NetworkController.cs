@@ -64,41 +64,76 @@ public class VRFPS_NetworkController : Photon.PunBehaviour
     {
         if (VRFPS_GameController.instance.playerName == name)
         {
-            if ((player1.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-            {
-                VRFPS_CanvasController.instance.CallDeathScreen();
-            }
-
             if (name == "Player 1")
             {
+                if ((player1.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player1.GetComponent<NetworkObject>().playerHealth -= demage;
             }
             else if (name == "Player 2")
             {
+                if ((player2.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player2.GetComponent<NetworkObject>().playerHealth -= demage;
             }
             else if (name == "Player 3")
             {
+                if ((player3.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player3.GetComponent<NetworkObject>().playerHealth -= demage;
             }
             else if (name == "Player 4")
             {
+                if ((player4.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player4.GetComponent<NetworkObject>().playerHealth -= demage;
             }
             else if (name == "Player 5")
             {
+                if ((player5.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player5.GetComponent<NetworkObject>().playerHealth -= demage;
             }
             else if (name == "Player 6")
             {
+                if ((player6.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player6.GetComponent<NetworkObject>().playerHealth -= demage;
             }
             else if (name == "Player 7")
             {
+                if ((player7.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player7.GetComponent<NetworkObject>().playerHealth -= demage;
             }
             else if (name == "Player 8")
             {
+                if ((player8.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+                {
+                    VRFPS_CanvasController.instance.CallDeathScreen();
+                }
+
                 player8.GetComponent<NetworkObject>().playerHealth -= demage;
             }
 

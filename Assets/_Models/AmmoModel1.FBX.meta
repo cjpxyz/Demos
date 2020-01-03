@@ -1,0 +1,263 @@
+fileFormatVersion: 2
+guid: 2a80ab66e1793c04b883b8030d05cfb5
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: box
+    100004: bullet
+    100006: bullet001
+    100008: bullet002
+    100010: bullet003
+    100012: bullet004
+    100014: bullet005
+    100016: bullet006
+    100018: bullet007
+    100020: bullet008
+    100022: bullet009
+    100024: bullet010
+    100026: bullet011
+    100028: bullet012
+    100030: bullet013
+    100032: bullet014
+    100034: bullet015
+    100036: shell_casing
+    100038: shell_casing002
+    100040: shell_casing004
+    100042: shell_casing006
+    100044: shell_casing008
+    100046: shell_casing010
+    100048: shell_casing012
+    100050: shell_casing014
+    100052: shell_casing016
+    100054: shell_casing018
+    100056: shell_casing020
+    100058: shell_casing022
+    100060: shell_casing024
+    100062: shell_casing026
+    100064: shell_casing028
+    100066: shell_casing030
+    400000: //RootNode
+    400002: box
+    400004: bullet
+    400006: bullet001
+    400008: bullet002
+    400010: bullet003
+    400012: bullet004
+    400014: bullet005
+    400016: bullet006
+    400018: bullet007
+    400020: bullet008
+    400022: bullet009
+    400024: bullet010
+    400026: bullet011
+    400028: bullet012
+    400030: bullet013
+    400032: bullet014
+    400034: bullet015
+    400036: shell_casing
+    400038: shell_casing002
+    400040: shell_casing004
+    400042: shell_casing006
+    400044: shell_casing008
+    400046: shell_casing010
+    400048: shell_casing012
+    400050: shell_casing014
+    400052: shell_casing016
+    400054: shell_casing018
+    400056: shell_casing020
+    400058: shell_casing022
+    400060: shell_casing024
+    400062: shell_casing026
+    400064: shell_casing028
+    400066: shell_casing030
+    2100000: box material
+    2100002: shell casing materials
+    2100004: cap materials
+    2100006: bullet materials
+    2100008: red paint
+    2300000: box
+    2300002: bullet
+    2300004: bullet001
+    2300006: bullet002
+    2300008: bullet003
+    2300010: bullet004
+    2300012: bullet005
+    2300014: bullet006
+    2300016: bullet007
+    2300018: bullet008
+    2300020: bullet009
+    2300022: bullet010
+    2300024: bullet011
+    2300026: bullet012
+    2300028: bullet013
+    2300030: bullet014
+    2300032: bullet015
+    2300034: shell_casing
+    2300036: shell_casing002
+    2300038: shell_casing004
+    2300040: shell_casing006
+    2300042: shell_casing008
+    2300044: shell_casing010
+    2300046: shell_casing012
+    2300048: shell_casing014
+    2300050: shell_casing016
+    2300052: shell_casing018
+    2300054: shell_casing020
+    2300056: shell_casing022
+    2300058: shell_casing024
+    2300060: shell_casing026
+    2300062: shell_casing028
+    2300064: shell_casing030
+    3300000: box
+    3300002: bullet
+    3300004: bullet001
+    3300006: bullet002
+    3300008: bullet003
+    3300010: bullet004
+    3300012: bullet005
+    3300014: bullet006
+    3300016: bullet007
+    3300018: bullet008
+    3300020: bullet009
+    3300022: bullet010
+    3300024: bullet011
+    3300026: bullet012
+    3300028: bullet013
+    3300030: bullet014
+    3300032: bullet015
+    3300034: shell_casing
+    3300036: shell_casing002
+    3300038: shell_casing004
+    3300040: shell_casing006
+    3300042: shell_casing008
+    3300044: shell_casing010
+    3300046: shell_casing012
+    3300048: shell_casing014
+    3300050: shell_casing016
+    3300052: shell_casing018
+    3300054: shell_casing020
+    3300056: shell_casing022
+    3300058: shell_casing024
+    3300060: shell_casing026
+    3300062: shell_casing028
+    3300064: shell_casing030
+    4300000: box
+    4300002: shell_casing006
+    4300004: bullet003
+    4300006: shell_casing004
+    4300008: bullet002
+    4300010: shell_casing002
+    4300012: bullet001
+    4300014: shell_casing
+    4300016: bullet
+    4300018: shell_casing008
+    4300020: bullet004
+    4300022: shell_casing010
+    4300024: bullet005
+    4300026: shell_casing012
+    4300028: bullet006
+    4300030: shell_casing014
+    4300032: bullet007
+    4300034: shell_casing016
+    4300036: bullet008
+    4300038: shell_casing018
+    4300040: bullet009
+    4300042: shell_casing020
+    4300044: bullet010
+    4300046: shell_casing022
+    4300048: bullet011
+    4300050: shell_casing024
+    4300052: bullet012
+    4300054: shell_casing026
+    4300056: bullet013
+    4300058: shell_casing028
+    4300060: bullet014
+    4300062: shell_casing030
+    4300064: bullet015
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 13
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

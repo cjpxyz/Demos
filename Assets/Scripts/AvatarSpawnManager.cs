@@ -1,6 +1,7 @@
 ﻿namespace PlayoVR
 {
     using NetBase;
+    using System.Collections;
     using UnityEngine;
     using UnityEngine.SceneManagement;
     using VRTK;
@@ -10,11 +11,14 @@
     {
         [Tooltip("Reference to the player avatar prefab")]
         public GameObject playerAvatar;
+        public GameObject ammoPrefab;
 
         private GameObject[] spawnPoints;
         private bool sceneLoaded = false;
         private bool connected = false;
         private GameObject currentPlayer;
+
+        private GameObject[] ammoSpawnList;
 
         void Awake()
         {
@@ -27,6 +31,11 @@
             {
                 Debug.LogError("No spawn points were found!");
             }
+        }
+
+        void Start()
+        {
+            ammoSpawnList = GameObject.FindGameObjectsWithTag("SpawnBullets");
         }
 
         void OnEnable()
@@ -47,6 +56,7 @@
 
         public override void OnJoinedRoom()
         {
+            //Debug.Log("!! OnJoinedRoom");
             connected = true;
             // Player sets its own name when joining
             PhotonNetwork.playerName = playerName(PhotonNetwork.player);
@@ -56,6 +66,7 @@
 
         public override void OnPhotonPlayerConnected(PhotonPlayer newPlayer)
         {
+            //Debug.Log("!! OnPhotonPlayerConnected");
             InitPlayer(newPlayer);
         }
 
@@ -65,7 +76,7 @@
 
         void InitPlayer(PhotonPlayer newPlayer)
         {
-            //Debug.Log("!! Instantiate Player 0");
+            //Debug.Log("!! InitPlayer 0");
             if (PhotonNetwork.isMasterClient && connected && sceneLoaded)
             {
                 // The master client tells everyone about the new player
@@ -74,7 +85,7 @@
                 newPlayer.SetCustomProperties(props);
                 photonView.RPC("SpawnAvatar", newPlayer);
 
-                //Debug.Log("!! Instantiate Player 1");
+                //Debug.Log("!! InitPlayer 1");
             }
         }
 
@@ -110,13 +121,20 @@
                 }
             }
 
+            for (int i = 0; i < ammoSpawnList.Length; i++)
+            {
+                Debug.Log("Instantiate ammo: " + i);
+                var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, ammoSpawnList[i].transform.position, ammoSpawnList[i].transform.rotation, 0);
+                ammo.gameObject.transform.parent = ammoSpawnList[i].transform;
+            }
+
             photonView.RPC("CallToEveryone", PhotonTargets.AllBuffered);
         }
 
         [PunRPC]
         void CallToEveryone()
         {
-            //Debug.Log("CallToEveryone");
+            //Debug.Log("!!!! CallToEveryone");
             if (VRFPS_GameController.instance != null)
             {
                 VRFPS_NetworkController.instance.playersInRoom++;
@@ -134,6 +152,58 @@
                 {
                     VRFPS_NetworkController.instance.player2 = currentPlayer;
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                }
+                else if (VRFPS_NetworkController.instance.playersInRoom == 3)
+                {
+                    VRFPS_NetworkController.instance.player3 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                    VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
+                }
+                else if (VRFPS_NetworkController.instance.playersInRoom == 4)
+                {
+                    VRFPS_NetworkController.instance.player4 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                    VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
+                    VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
+                }
+                else if (VRFPS_NetworkController.instance.playersInRoom == 5)
+                {
+                    VRFPS_NetworkController.instance.player5 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                    VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
+                    VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
+                    VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
+                }
+                else if (VRFPS_NetworkController.instance.playersInRoom == 6)
+                {
+                    VRFPS_NetworkController.instance.player6 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                    VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
+                    VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
+                    VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
+                    VRFPS_NetworkController.instance.player5 = GameObject.Find("Player 5");
+                }
+                else if (VRFPS_NetworkController.instance.playersInRoom == 7)
+                {
+                    VRFPS_NetworkController.instance.player7 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                    VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
+                    VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
+                    VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
+                    VRFPS_NetworkController.instance.player5 = GameObject.Find("Player 5");
+                    VRFPS_NetworkController.instance.player6 = GameObject.Find("Player 6");
+                }
+                else if (VRFPS_NetworkController.instance.playersInRoom == 8)
+                {
+                    VRFPS_NetworkController.instance.player8 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+                    VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
+                    VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
+                    VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
+                    VRFPS_NetworkController.instance.player5 = GameObject.Find("Player 5");
+                    VRFPS_NetworkController.instance.player6 = GameObject.Find("Player 6");
+                    VRFPS_NetworkController.instance.player7 = GameObject.Find("Player 7");
                 }
             }
         }

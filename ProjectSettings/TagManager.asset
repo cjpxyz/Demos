@@ -28,6 +28,7 @@ TagManager:
   - PanoramaSource
   - SkyboxCamera
   - Boss
+  - SpawnBullets
   layers:
   - Default
   - TransparentFX

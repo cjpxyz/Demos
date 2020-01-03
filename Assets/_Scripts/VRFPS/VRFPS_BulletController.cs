@@ -9,9 +9,11 @@ public class VRFPS_BulletController : MonoBehaviour
     {
         if (other.tag == "Target")
         {
-            //other.GetComponent<VRFPS_TeamController>().WasHit(other.GetComponent<VRFPS_TeamController>().playerName);
-            VRFPS_NetworkController.instance.GetDemage(other.GetComponent<VRFPS_TeamController>().playerAvatar.GetComponent<NetworkObject>().playerName, VRFPS_GameController.instance.initialHitDemage);
-            Debug.Log(other.GetComponent<VRFPS_TeamController>().playerAvatar.GetComponent<NetworkObject>().playerName + " get hit!");
+            if (other.GetComponent<VRFPS_TeamController>().playerAvatar.name != VRFPS_GameController.instance.playerName)
+            {
+                VRFPS_NetworkController.instance.GetDemage(other.GetComponent<VRFPS_TeamController>().playerAvatar.GetComponent<NetworkObject>().playerName, VRFPS_GameController.instance.initialHitDemage);
+                Debug.Log(other.GetComponent<VRFPS_TeamController>().playerAvatar.GetComponent<NetworkObject>().playerName + " get hit!");
+            }
         }
     }
 }

@@ -74,6 +74,13 @@
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_SceneManager.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_TeamController.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\Weapon.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Dungeon\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\Dungeon\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\Dungeon\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -1372,6 +1379,7 @@
     <None Include="Assets\Oculus\Avatar\Resources\Materials\Expressive\Avatar_PC_SingleComponentExpressive.shader" />
     <None Include="Assets\Dungeon\PostProcessing\Resources\Shaders\TAA.shader" />
     <None Include="Assets\Dungeon\Readme.txt" />
+    <None Include="Assets\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\Dungeon\PostProcessing\Resources\Shaders\EyeHistogram.compute" />
     <None Include="Assets\Dungeon\PostProcessing\Resources\Shaders\TAA.cginc" />
     <None Include="Assets\Oculus\Avatar\Resources\Materials\AvatarPBRV2Simple.shader" />
@@ -1439,9 +1447,6 @@
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
@@ -1450,6 +1455,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -1669,6 +1677,9 @@
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
       <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:/Users/Computador/Documents/Projetos/Demos/Assets/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
