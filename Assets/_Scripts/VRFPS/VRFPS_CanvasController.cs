@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class VRFPS_CanvasController : MonoBehaviour
 {
@@ -147,6 +148,11 @@ public class VRFPS_CanvasController : MonoBehaviour
         ammoCount.GetComponent<Text>().text = "00" + VRFPS_GameController.instance.initialAmmoCount;
         roundTimeCount.GetComponent<Text>().text = "0" + VRFPS_GameController.instance.matchTime + ":00";
         roundCount.GetComponent<Text>().text = "" + (VRFPS_GameController.instance.initialTotalRounds - VRFPS_GameController.instance.initialTotalRounds);
+    }
+
+    public void UpdateBulletsNumber()
+    {
+        ammoCount.GetComponent<Text>().text = "00" + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets;
     }
 
     public void GetHit(int team, string playerName)

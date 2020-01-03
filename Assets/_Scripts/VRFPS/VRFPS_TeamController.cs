@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using NetBase;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +16,16 @@ public class VRFPS_TeamController : MonoBehaviour
         if (VRFPS_CanvasController.instance != null)
         {
             VRFPS_CanvasController.instance.GetHit(myTeam, name);
-            //VRFPS_CanvasController.instance.AddPointToTeam(myTeam);
         }
+    }
 
-        //Destroy(gameObject);
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "AmmoCollectable")
+        {
+            PhotonNetwork.Destroy(other.gameObject);
+            VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().AddBullets(10);
+            VRFPS_CanvasController.instance.UpdateBulletsNumber();
+        }
     }
 }

@@ -241,9 +241,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8974968940494256262}
   - component: {fileID: 3008904060132398822}
+  - component: {fileID: 2187038718082324450}
+  - component: {fileID: 1187400770347243140}
   m_Layer: 0
   m_Name: AmmoModel1
-  m_TagString: Untagged
+  m_TagString: AmmoCollectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -322,6 +324,31 @@ MonoBehaviour:
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &2187038718082324450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974968940494415014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0490cfc513f7cf4683457edc8bbebab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1187400770347243140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974968940494415014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.92664725, y: 1, z: 0.96332335}
+  m_Center: {x: 0.11002913, y: 0, z: 0.1283673}
 --- !u!1 &8974968940494415016
 GameObject:
   m_ObjectHideFlags: 0

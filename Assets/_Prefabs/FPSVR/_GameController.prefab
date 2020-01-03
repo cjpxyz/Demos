@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d9487993a9f04aa47d4beef13ad54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialAmmoCount: 50
+  initialAmmoCount: 10
   initialHealth: 100
   initialHitDemage: 20
   initialTotalRounds: 3

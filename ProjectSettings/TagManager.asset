@@ -29,6 +29,7 @@ TagManager:
   - SkyboxCamera
   - Boss
   - SpawnBullets
+  - AmmoCollectable
   layers:
   - Default
   - TransparentFX

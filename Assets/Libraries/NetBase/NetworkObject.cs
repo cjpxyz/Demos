@@ -96,6 +96,11 @@
             //VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + "!!" + playerBullets;
         }
 
+        public void AddBullets(int quant)
+        {
+            playerBullets += quant;
+        }
+
         private double GetInterpolationBackTime()
         {
             int interpolationBackTime;
@@ -475,6 +480,8 @@
                     transform.parent = newParent != null ? newParent.transform : null;
                 }
             }
+
+
         }
     }
 }

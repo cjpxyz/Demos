@@ -124,7 +124,7 @@
             for (int i = 0; i < ammoSpawnList.Length; i++)
             {
                 Debug.Log("Instantiate ammo: " + i);
-                var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, ammoSpawnList[i].transform.position, ammoSpawnList[i].transform.rotation, 0);
+                var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, new Vector3(ammoSpawnList[i].transform.position.x, ammoSpawnList[i].transform.position.y + 1, ammoSpawnList[i].transform.position.z), ammoSpawnList[i].transform.rotation, 0);
                 ammo.gameObject.transform.parent = ammoSpawnList[i].transform;
             }
 
