@@ -117,7 +117,7 @@ public class VRFPS_NetworkController : Photon.PunBehaviour
         {
             if((currentGO.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
             {
-                VRFPS_CanvasController.instance.CallDeathScreen();
+                VRFPS_CanvasActions.instance.CallDeathScreen();
             }
 
             currentGO.GetComponent<NetworkObject>().playerHealth -= demage;

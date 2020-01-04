@@ -13,9 +13,9 @@ public class VRFPS_TeamController : MonoBehaviour
 
     public void WasHit(string name)
     {
-        if (VRFPS_CanvasController.instance != null)
+        if (VRFPS_CanvasActions.instance != null)
         {
-            VRFPS_CanvasController.instance.GetHit(myTeam, name);
+            VRFPS_CanvasActions.instance.GetHit(myTeam, name);
         }
     }
 
@@ -23,9 +23,10 @@ public class VRFPS_TeamController : MonoBehaviour
     {
         if (other.tag == "AmmoCollectable")
         {
+            other.transform.parent.GetComponent<VRFPS_AmmoSpawner>().CallNewAmmo();
             PhotonNetwork.Destroy(other.gameObject);
             VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().AddBullets(10);
-            VRFPS_CanvasController.instance.UpdateBulletsNumber();
+            VRFPS_CanvasActions.instance.UpdateBulletsNumber();
         }
     }
 }

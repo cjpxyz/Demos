@@ -79,21 +79,18 @@ public class VRFPS_GameController : MonoBehaviour
     private IEnumerator StartSequence()
     {
         yield return new WaitUntil(() => isConnectedInPhoton);
-        VRFPS_CanvasController.instance.versionContainer.SetActive(false);
-        VRFPS_CanvasController.instance.mainBG.GetComponent<Image>().DOFade(1f, 0f);
-        VRFPS_CanvasController.instance.mainBG.SetActive(true);
-        VRFPS_CanvasController.instance.SemiSetInitialGameInfos();
+        VRFPS_CanvasActions.instance.SemiSetInitialGameInfos();
 
         canStartMacth = true;
 
         yield return new WaitUntil(() => canStartMacth);
         VRFPS_CanvasController.instance.mainBG.GetComponent<Image>().DOFade(0.9f, 2f);
+        VRFPS_VRCanvasController.instance.mainBG.GetComponent<Image>().DOFade(0.9f, 2f);
 
         canCountStartTime = true;
 
         yield return new WaitForSeconds(startMatchTime);
-        VRFPS_CanvasController.instance.mainBG.GetComponent<Image>().DOFade(0.0f, 2f);
-        VRFPS_CanvasController.instance.SetInitialGameInfos();
+        VRFPS_CanvasActions.instance.SetInitialGameInfos();
         isInMatch = true;
     }
 

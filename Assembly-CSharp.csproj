@@ -64,7 +64,9 @@
     <Compile Include="Assets\_Scripts\VRFPS\Grappling.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\HandGrabbing.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\HookDetector.cs" />
+    <Compile Include="Assets\_Scripts\VRFPS\VRFPS_AmmoSpawner.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_BulletController.cs" />
+    <Compile Include="Assets\_Scripts\VRFPS\VRFPS_CanvasActions.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_CanvasController.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_GameController.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_GunController.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_PlayerMovement.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_SceneManager.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_TeamController.cs" />
+    <Compile Include="Assets\_Scripts\VRFPS\VRFPS_VRCanvasController.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\Weapon.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />

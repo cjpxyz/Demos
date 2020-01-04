@@ -9,6 +9,8 @@
 
     public class AvatarSpawnManager : Photon.PunBehaviour
     {
+        public static AvatarSpawnManager instance;
+
         [Tooltip("Reference to the player avatar prefab")]
         public GameObject playerAvatar;
         public GameObject ammoPrefab;
@@ -44,6 +46,17 @@
             {
                 Debug.LogError("No spawn points were found!");
             }
+
+            if (!instance)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+
+            DontDestroyOnLoad(gameObject);
         }
 
         void Start()
@@ -140,6 +153,13 @@
                     camType1.cullingMask = maskToPlayer1;
                     camType2.cullingMask = maskToPlayer1;
                     camType3.cullingMask = maskToPlayer1;
+
+                    for (int i = 0; i < ammoSpawnList.Length; i++)
+                    {
+                        Debug.Log("Instantiate ammo: " + i);
+                        var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, new Vector3(ammoSpawnList[i].transform.position.x, ammoSpawnList[i].transform.position.y + 1, ammoSpawnList[i].transform.position.z), ammoSpawnList[i].transform.rotation, 0);
+                        ammo.gameObject.transform.parent = ammoSpawnList[i].transform;
+                    }
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 2")
                 {
@@ -197,13 +217,6 @@
                     camType2.cullingMask = maskToPlayer8;
                     camType3.cullingMask = maskToPlayer8;
                 }
-            }
-
-            for (int i = 0; i < ammoSpawnList.Length; i++)
-            {
-                Debug.Log("Instantiate ammo: " + i);
-                var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, new Vector3(ammoSpawnList[i].transform.position.x, ammoSpawnList[i].transform.position.y + 1, ammoSpawnList[i].transform.position.z), ammoSpawnList[i].transform.rotation, 0);
-                ammo.gameObject.transform.parent = ammoSpawnList[i].transform;
             }
 
             photonView.RPC("CallToEveryone", PhotonTargets.AllBuffered);
@@ -296,6 +309,12 @@
                     VRFPS_NetworkController.instance.player7 = GameObject.Find("Player 7");
                 }
             }
+        }
+
+        public void SpawnAmmo(Transform parent)
+        {
+            var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, new Vector3(parent.position.x, parent.position.y + 1, parent.position.z), parent.rotation, 0);
+            ammo.gameObject.transform.parent = parent;
         }
 
         private string playerName(PhotonPlayer ply)

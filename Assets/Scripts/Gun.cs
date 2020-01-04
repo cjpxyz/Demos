@@ -54,7 +54,7 @@
             {
                 // Now create the bullet and play sound/animation locally and on all other clients
                 VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerBullets--;
-                VRFPS_CanvasController.instance.UpdateBulletsNumber();
+                VRFPS_CanvasActions.instance.UpdateBulletsNumber();
                 Debug.Log("Remove bullets from: " + VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().playerName);
             }
 

@@ -790,11 +790,6 @@ PrefabInstance:
       propertyPath: camCanvas
       value: 
       objectReference: {fileID: 829253207}
-    - target: {fileID: 6472699430137465280, guid: 34116141837b1c44587de92485209c17,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6472699428702387138, guid: 34116141837b1c44587de92485209c17,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -814,10 +809,5 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1873716751766520529}
-    - target: {fileID: 2104052064173505134, guid: 34116141837b1c44587de92485209c17,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.4627451
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34116141837b1c44587de92485209c17, type: 3}
