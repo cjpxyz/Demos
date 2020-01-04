@@ -72,8 +72,8 @@
                 stream.SendNext(playerKills);
                 stream.SendNext(playerDeaths);
 
-                stream.SendNext(playerNameLabel.activeSelf);
-                stream.SendNext(playerMesh.activeSelf);
+                //stream.SendNext(playerNameLabel.activeSelf);
+                //stream.SendNext(playerMesh.activeSelf);
             }
             else
             {
@@ -84,8 +84,8 @@
                 playerKills = (float)stream.ReceiveNext();
                 playerDeaths = (float)stream.ReceiveNext();
 
-                playerNameLabel.SetActive((bool)stream.ReceiveNext());
-                playerMesh.SetActive((bool)stream.ReceiveNext());
+                //playerNameLabel.SetActive((bool)stream.ReceiveNext());
+                //playerMesh.SetActive((bool)stream.ReceiveNext());
             }
         }
 

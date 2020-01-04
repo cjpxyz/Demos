@@ -81,7 +81,7 @@
 
         void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-            if (stream.isWriting)
+            /*if (stream.isWriting)
             {
                 for (int i = 0; i < gunList.Count; i++)
                 {
@@ -94,7 +94,7 @@
                 {
                     gunList[i].SetActive((bool)stream.ReceiveNext());
                 }
-            }
+            }*/
         }
 
         void OnEnable()
