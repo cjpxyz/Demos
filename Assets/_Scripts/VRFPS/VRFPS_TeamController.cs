@@ -23,7 +23,7 @@ public class VRFPS_TeamController : MonoBehaviour
     {
         if (other.tag == "AmmoCollectable")
         {
-            other.transform.parent.GetComponent<VRFPS_AmmoSpawner>().CallNewAmmo();
+            //other.transform.parent.GetComponent<VRFPS_AmmoSpawner>().CallNewAmmo();
             PhotonNetwork.Destroy(other.gameObject);
             VRFPS_GameController.instance.myAvatarObject.GetComponent<NetworkObject>().AddBullets(10);
             VRFPS_CanvasActions.instance.UpdateBulletsNumber();

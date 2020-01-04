@@ -2,6 +2,7 @@
 {
     using NetBase;
     using System.Collections;
+    using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.SceneManagement;
     using VRTK;
@@ -14,6 +15,20 @@
         [Tooltip("Reference to the player avatar prefab")]
         public GameObject playerAvatar;
         public GameObject ammoPrefab;
+
+        [Space(4)]
+        public Transform killPoint1;
+        [Space(4)]
+
+        [Space(4)]
+        public GameObject simulatorVersion;
+        public GameObject oculusVersion;
+        public GameObject steamVrVersion;
+        [Space(4)]
+
+        [Space(4)]
+        public List<GameObject> gunList = new List<GameObject>();
+        [Space(4)]
 
         public Camera camType1;
         public Camera camType2;
@@ -62,6 +77,24 @@
         void Start()
         {
             ammoSpawnList = GameObject.FindGameObjectsWithTag("SpawnBullets");
+        }
+
+        void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.isWriting)
+            {
+                for (int i = 0; i < gunList.Count; i++)
+                {
+                    stream.SendNext(gunList[i].activeSelf);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < gunList.Count; i++)
+                {
+                    gunList[i].SetActive((bool)stream.ReceiveNext());
+                }
+            }
         }
 
         void OnEnable()

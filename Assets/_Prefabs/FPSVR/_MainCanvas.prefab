@@ -1954,7 +1954,7 @@ RectTransform:
   - {fileID: 5669672312577138027}
   - {fileID: 7995825542224721100}
   m_Father: {fileID: 6472699429806830854}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2346,7 +2346,7 @@ RectTransform:
   - {fileID: 2484563412471771596}
   - {fileID: 6103771234156987337}
   m_Father: {fileID: 6472699429806830854}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3245,7 +3245,7 @@ RectTransform:
   - {fileID: 6472699429004362695}
   - {fileID: 6472699428895891503}
   m_Father: {fileID: 6472699429806830854}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -3552,9 +3552,9 @@ RectTransform:
   - {fileID: 6472699430137465281}
   - {fileID: 6472699429152618719}
   - {fileID: 1755067576}
-  - {fileID: 6472699429249432536}
   - {fileID: 5708996612602195977}
   - {fileID: 8241025114446174109}
+  - {fileID: 6472699429249432536}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3653,6 +3653,9 @@ MonoBehaviour:
   countText: {fileID: 5089529264489506970}
   mapContainer: {fileID: 218404908}
   mapImage: {fileID: 1111414658}
+  respawnBtn: {fileID: 15702068}
+  backToMenuLoseBtn: {fileID: 3215034071228597993}
+  backToMenuWinBtn: {fileID: 510165581472826086}
   countMS: {fileID: 958981046617869263}
   niceMsColor: {r: 0.17008099, g: 0.9056604, b: 0.11534355, a: 1}
   mediumMsColor: {r: 0.9716981, g: 0.68989366, b: 0.19708972, a: 1}

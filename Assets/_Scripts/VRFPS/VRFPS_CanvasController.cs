@@ -32,6 +32,10 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject mapContainer;
     public GameObject mapImage;
 
+    public GameObject respawnBtn;
+    public GameObject backToMenuLoseBtn;
+    public GameObject backToMenuWinBtn;
+
     public GameObject countMS;
     public Color niceMsColor;
     public Color mediumMsColor;

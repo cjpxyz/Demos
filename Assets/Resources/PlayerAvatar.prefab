@@ -47,10 +47,10 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: death
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!114 &6295343618192484958
 MonoBehaviour:
@@ -74,6 +74,7 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 1700606788452134579}
+  - {fileID: 1229396832607218463}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -166,6 +167,7 @@ MonoBehaviour:
   playerBullets: 0
   playerKills: 0
   playerDeaths: 0
+  playerNameLabel: {fileID: 0}
   playerMesh: {fileID: 0}
   anim: {fileID: 0}
 --- !u!1 &2897987009029718892
@@ -800,6 +802,7 @@ MonoBehaviour:
   playerBullets: 0
   playerKills: 0
   playerDeaths: 0
+  playerNameLabel: {fileID: 0}
   playerMesh: {fileID: 0}
   anim: {fileID: 0}
 --- !u!1 &6325916463855259483
@@ -1190,6 +1193,7 @@ MonoBehaviour:
   playerBullets: 0
   playerKills: 0
   playerDeaths: 0
+  playerNameLabel: {fileID: 3988892519917819623}
   playerMesh: {fileID: 1226231512921882721}
   anim: {fileID: 1176214409948139545}
 --- !u!114 &1411435262157181547
@@ -1578,6 +1582,7 @@ MonoBehaviour:
   playerBullets: 0
   playerKills: 0
   playerDeaths: 0
+  playerNameLabel: {fileID: 0}
   playerMesh: {fileID: 0}
   anim: {fileID: 0}
 --- !u!1 &8946380358428556316
@@ -1682,6 +1687,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoldierBase1
       objectReference: {fileID: 0}
+    - target: {fileID: 95570697975595964, guid: b4243624fc7192e4997e36f6ffcab7bd,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: da1f2b7d4786aeb47a18472869f8572e, type: 2}
     - target: {fileID: 4213512920971450, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1738,11 +1748,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 95570697975595964, guid: b4243624fc7192e4997e36f6ffcab7bd,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: da1f2b7d4786aeb47a18472869f8572e, type: 2}
     - target: {fileID: 4248071971251308, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.010359724

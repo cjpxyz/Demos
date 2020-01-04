@@ -266,11 +266,29 @@ public class VRFPS_CanvasActions : MonoBehaviour
     private IEnumerator CallDeathScreenRoutine()
     {
         DisableAllScreens();
+        VRFPS_CanvasController.instance.respawnBtn.SetActive(false);
+        VRFPS_VRCanvasController.instance.respawnBtn.SetActive(false);
+
         VRFPS_CanvasController.instance.deathScreen.SetActive(true);
         VRFPS_VRCanvasController.instance.deathScreen.SetActive(true);
 
+        PlayoVR.AvatarSpawnManager.instance.camType1.enabled = false;
+        PlayoVR.AvatarSpawnManager.instance.camType2.enabled = false;
+        PlayoVR.AvatarSpawnManager.instance.camType3.enabled = false;
+
         yield return new WaitForSeconds(2);
-        VRTK_SDKManager.instance.loadedSetup.gameObject.SetActive(false);
+        //VRTK_SDKManager.instance.loadedSetup.gameObject.SetActive(false);
+        VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+        PlayoVR.AvatarSpawnManager.instance.oculusVersion.transform.position = PlayoVR.AvatarSpawnManager.instance.killPoint1.position;
+        PlayoVR.AvatarSpawnManager.instance.simulatorVersion.transform.position = PlayoVR.AvatarSpawnManager.instance.killPoint1.position;
+        PlayoVR.AvatarSpawnManager.instance.steamVrVersion.transform.position = PlayoVR.AvatarSpawnManager.instance.killPoint1.position;
+        //PlayoVR.AvatarSpawnManager.instance.SpawnAmmo(VRFPS_NetworkController.instance.currentGO.transform);
+
+        yield return new WaitForSeconds(2.5f);
+        VRFPS_CanvasController.instance.respawnBtn.SetActive(true);
+        VRFPS_VRCanvasController.instance.respawnBtn.SetActive(true);
     }
 
     public void CallWinScreen()
