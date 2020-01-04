@@ -13,6 +13,19 @@
         public GameObject playerAvatar;
         public GameObject ammoPrefab;
 
+        public Camera camType1;
+        public Camera camType2;
+        public Camera camType3;
+
+        public LayerMask maskToPlayer1;
+        public LayerMask maskToPlayer2;
+        public LayerMask maskToPlayer3;
+        public LayerMask maskToPlayer4;
+        public LayerMask maskToPlayer5;
+        public LayerMask maskToPlayer6;
+        public LayerMask maskToPlayer7;
+        public LayerMask maskToPlayer8;
+
         private GameObject[] spawnPoints;
         private bool sceneLoaded = false;
         private bool connected = false;
@@ -119,6 +132,71 @@
                 {
                     player.gameObject.GetComponent<NetworkObject>().playerTeam = 2;
                 }
+
+                if (VRFPS_GameController.instance.playerName == "Player 1")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player1Body");
+
+                    camType1.cullingMask = maskToPlayer1;
+                    camType2.cullingMask = maskToPlayer1;
+                    camType3.cullingMask = maskToPlayer1;
+                }
+                else if (VRFPS_GameController.instance.playerName == "Player 2")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player2Body");
+
+                    camType1.cullingMask = maskToPlayer2;
+                    camType2.cullingMask = maskToPlayer2;
+                    camType3.cullingMask = maskToPlayer2;
+                }
+                else if (VRFPS_GameController.instance.playerName == "Player 3")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player3Body");
+
+                    camType1.cullingMask = maskToPlayer3;
+                    camType2.cullingMask = maskToPlayer3;
+                    camType3.cullingMask = maskToPlayer3;
+                }
+                else if (VRFPS_GameController.instance.playerName == "Player 4")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player4Body");
+
+                    camType1.cullingMask = maskToPlayer4;
+                    camType2.cullingMask = maskToPlayer4;
+                    camType3.cullingMask = maskToPlayer4;
+                }
+                else if (VRFPS_GameController.instance.playerName == "Player 5")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player5Body");
+
+                    camType1.cullingMask = maskToPlayer5;
+                    camType2.cullingMask = maskToPlayer5;
+                    camType3.cullingMask = maskToPlayer5;
+                }
+                else if (VRFPS_GameController.instance.playerName == "Player 6")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player6Body");
+
+                    camType1.cullingMask = maskToPlayer6;
+                    camType2.cullingMask = maskToPlayer6;
+                    camType3.cullingMask = maskToPlayer6;
+                }
+                else if (VRFPS_GameController.instance.playerName == "Player 7")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player7Body");
+
+                    camType1.cullingMask = maskToPlayer7;
+                    camType2.cullingMask = maskToPlayer7;
+                    camType3.cullingMask = maskToPlayer7;
+                }
+                else if (VRFPS_GameController.instance.playerName == "Player 8")
+                {
+                    ChangeLayers(currentPlayer.GetComponent<NetworkObject>().playerMesh, "Player8Body");
+
+                    camType1.cullingMask = maskToPlayer8;
+                    camType2.cullingMask = maskToPlayer8;
+                    camType3.cullingMask = maskToPlayer8;
+                }
             }
 
             for (int i = 0; i < ammoSpawnList.Length; i++)
@@ -129,6 +207,16 @@
             }
 
             photonView.RPC("CallToEveryone", PhotonTargets.AllBuffered);
+        }
+
+        private void ChangeLayers(GameObject parent, string layer)
+        {
+            parent.layer = LayerMask.NameToLayer(layer);
+
+            foreach (Transform child in parent.GetComponentsInChildren<Transform>(true))
+            {
+                child.gameObject.layer = LayerMask.NameToLayer(layer);  // add any layer you want. 
+            }
         }
 
         [PunRPC]
@@ -144,6 +232,8 @@
 
             if (VRFPS_GameController.instance != null)
             {
+                VRFPS_NetworkController.instance.currentGO = currentPlayer;
+
                 if (VRFPS_NetworkController.instance.playersInRoom == 1)
                 {
                     VRFPS_NetworkController.instance.player1 = currentPlayer;

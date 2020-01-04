@@ -35,6 +35,9 @@
         public float playerKills;
         public float playerDeaths;
 
+        public GameObject playerMesh;
+        public Animator anim;
+
         public void Awake()
         {
             Rigidbody rbody = GetComponent<Rigidbody>();

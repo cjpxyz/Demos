@@ -14,6 +14,9 @@ public class VRFPS_NetworkController : Photon.PunBehaviour
     public int team1Points;
     public int team2Points;
 
+    [HideInInspector]
+    public GameObject currentGO;
+
     public GameObject player1;
     public GameObject player2;
     public GameObject player3;
@@ -37,6 +40,47 @@ public class VRFPS_NetworkController : Photon.PunBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Start()
+    {
+        if (VRFPS_GameController.instance.playerName == "Player 1")
+        {
+            currentGO = player1;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 2")
+        {
+            currentGO = player2;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 3")
+        {
+            currentGO = player3;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 4")
+        {
+            currentGO = player4;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 5")
+        {
+            currentGO = player5;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 6")
+        {
+            currentGO = player6;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 7")
+        {
+            currentGO = player7;
+        }
+        else if (VRFPS_GameController.instance.playerName == "Player 8")
+        {
+            currentGO = player8;
+        }
+    }
+
+    private void Update()
+    {
+        //Debug.Log("MS: " + PhotonNetwork.networkingPeer.RoundTripTime);
+    }
+
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
@@ -53,6 +97,13 @@ public class VRFPS_NetworkController : Photon.PunBehaviour
         }
     }
 
+    public bool IsDead
+    {
+        get
+        {
+            return currentGO.GetComponent<NetworkObject>().playerHealth <= 0;
+        }
+    }
 
     public void GetDemage(string name, float demage)
     {
@@ -64,80 +115,19 @@ public class VRFPS_NetworkController : Photon.PunBehaviour
     {
         if (VRFPS_GameController.instance.playerName == name)
         {
-            if (name == "Player 1")
+            if((currentGO.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
             {
-                if ((player1.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
-
-                player1.GetComponent<NetworkObject>().playerHealth -= demage;
+                VRFPS_CanvasController.instance.CallDeathScreen();
             }
-            else if (name == "Player 2")
-            {
-                if ((player2.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
 
-                player2.GetComponent<NetworkObject>().playerHealth -= demage;
-            }
-            else if (name == "Player 3")
-            {
-                if ((player3.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
-
-                player3.GetComponent<NetworkObject>().playerHealth -= demage;
-            }
-            else if (name == "Player 4")
-            {
-                if ((player4.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
-
-                player4.GetComponent<NetworkObject>().playerHealth -= demage;
-            }
-            else if (name == "Player 5")
-            {
-                if ((player5.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
-
-                player5.GetComponent<NetworkObject>().playerHealth -= demage;
-            }
-            else if (name == "Player 6")
-            {
-                if ((player6.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
-
-                player6.GetComponent<NetworkObject>().playerHealth -= demage;
-            }
-            else if (name == "Player 7")
-            {
-                if ((player7.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
-
-                player7.GetComponent<NetworkObject>().playerHealth -= demage;
-            }
-            else if (name == "Player 8")
-            {
-                if ((player8.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
-                {
-                    VRFPS_CanvasController.instance.CallDeathScreen();
-                }
-
-                player8.GetComponent<NetworkObject>().playerHealth -= demage;
-            }
+            currentGO.GetComponent<NetworkObject>().playerHealth -= demage;
 
             Debug.Log("Remove demage: " + demage + " / from: " + name);
+        }
+
+        if ((currentGO.GetComponent<NetworkObject>().playerHealth - demage) <= 0)
+        {
+            currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetTrigger("death");
         }
     }
 }

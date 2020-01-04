@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using VRTK;
 
 public class VRFPS_CanvasController : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class VRFPS_CanvasController : MonoBehaviour
 
     public GameObject mapContainer;
     public GameObject mapImage;
+
+    public GameObject countMS;
+    public Color niceMsColor;
+    public Color mediumMsColor;
+    public Color badMsColor;
 
     public GameObject roundInfosContainer;
     public GameObject roundTimeCount;
@@ -78,6 +84,24 @@ public class VRFPS_CanvasController : MonoBehaviour
             int seconds = (int)(VRFPS_GameController.instance.startMatchTime % 60);
 
             countText.GetComponent<Text>().text = "" + seconds;
+
+            if (PhotonNetwork.connected)
+            {
+                if(PhotonNetwork.GetPing() < 50)
+                {
+                    countMS.GetComponent<Text>().color = niceMsColor;
+                }
+                else if (PhotonNetwork.GetPing() < 120)
+                {
+                    countMS.GetComponent<Text>().color = mediumMsColor;
+                }
+                else
+                {
+                    countMS.GetComponent<Text>().color = badMsColor;
+                }
+
+                countMS.GetComponent<Text>().text = PhotonNetwork.GetPing() + "ms";
+            }
         }
 
         if (VRFPS_NetworkController.instance != null)
@@ -148,6 +172,18 @@ public class VRFPS_CanvasController : MonoBehaviour
         ammoCount.GetComponent<Text>().text = "00" + VRFPS_GameController.instance.initialAmmoCount;
         roundTimeCount.GetComponent<Text>().text = "0" + VRFPS_GameController.instance.matchTime + ":00";
         roundCount.GetComponent<Text>().text = "" + (VRFPS_GameController.instance.initialTotalRounds - VRFPS_GameController.instance.initialTotalRounds);
+
+        DeathCamToPos2();
+    }
+
+    private void DeathCamToPos1()
+    {
+        camCanvas.transform.DOLocalMoveZ(10f, 60f).OnComplete(DeathCamToPos2);
+    }
+
+    private void DeathCamToPos2()
+    {
+        camCanvas.transform.DOLocalMoveZ(-10f, 60f).OnComplete(DeathCamToPos1);
     }
 
     public void UpdateBulletsNumber()
@@ -184,8 +220,16 @@ public class VRFPS_CanvasController : MonoBehaviour
 
     public void CallDeathScreen()
     {
+        StartCoroutine(CallDeathScreenRoutine());
+    }
+
+    private IEnumerator CallDeathScreenRoutine()
+    {
         DisableAllScreens();
         deathScreen.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+        VRTK_SDKManager.instance.loadedSetup.gameObject.SetActive(false);
     }
 
     public void CallWinScreen()
@@ -193,6 +237,7 @@ public class VRFPS_CanvasController : MonoBehaviour
         DisableAllScreens();
         winScreen.SetActive(true);
     }
+
 
     public void CallLoseScreen()
     {
