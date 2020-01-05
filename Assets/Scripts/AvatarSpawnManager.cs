@@ -135,7 +135,7 @@
 
         void InitPlayer(PhotonPlayer newPlayer)
         {
-            //Debug.Log("!! InitPlayer 0");
+            Debug.Log("!! InitPlayer 0");
             if (PhotonNetwork.isMasterClient && connected && sceneLoaded)
             {
                 // The master client tells everyone about the new player
@@ -144,13 +144,15 @@
                 newPlayer.SetCustomProperties(props);
                 photonView.RPC("SpawnAvatar", newPlayer);
 
-                //Debug.Log("!! InitPlayer 1");
+                Debug.Log("!! InitPlayer 1");
             }
         }
 
         [PunRPC]
         void SpawnAvatar()
         {
+            Debug.Log("!! SpawnAvatar 1");
+
             if (!PhotonNetwork.player.CustomProperties.ContainsKey(PlayerPropNames.PLAYER_NR))
             {
                 Debug.LogError("Player does not have a PLAYER_NR property!");

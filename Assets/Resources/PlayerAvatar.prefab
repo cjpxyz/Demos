@@ -1180,11 +1180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: 0
-  position: 2
-  rotation: 2
+  position: 0
+  rotation: 0
   scale: 0
-  velocity: 1
-  angularVelocity: 1
+  velocity: 0
+  angularVelocity: 0
   useLocalValues: 1
   onChangeOnly: 1
   playerTeam: 0

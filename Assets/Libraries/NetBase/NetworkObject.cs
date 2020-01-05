@@ -39,6 +39,9 @@
         public GameObject playerMesh;
         public Animator anim;
 
+        Vector3 realPositon;
+        Quaternion realRotation;
+
         public void Awake()
         {
             Rigidbody rbody = GetComponent<Rigidbody>();
@@ -72,6 +75,9 @@
                 stream.SendNext(playerKills);
                 stream.SendNext(playerDeaths);
 
+                stream.SendNext(transform.position);
+                stream.SendNext(transform.rotation);
+
                 //stream.SendNext(playerNameLabel.activeSelf);
                 //stream.SendNext(playerMesh.activeSelf);
             }
@@ -84,6 +90,9 @@
                 playerKills = (float)stream.ReceiveNext();
                 playerDeaths = (float)stream.ReceiveNext();
 
+                realPositon = (Vector3)stream.ReceiveNext();
+                realRotation = (Quaternion)stream.ReceiveNext();
+
                 //playerNameLabel.SetActive((bool)stream.ReceiveNext());
                 //playerMesh.SetActive((bool)stream.ReceiveNext());
             }
@@ -93,12 +102,15 @@
         {
             if (!photonView.isMine)
             {
-                double currentTime = PhotonNetwork.time;
+                /*double currentTime = PhotonNetwork.time;
                 double interpolationTime = currentTime - GetInterpolationBackTime();
                 foreach (ComponentInterpolator ci in cipols)
                 {
                     ci.Update(interpolationTime);
-                }
+                }*/
+
+                transform.position = Vector3.Lerp(transform.position, realPositon, 0.1f);
+                transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
             }
 
             //Debug.Log("playerBullets: " + playerBullets + " / playerHealth" + playerHealth);
