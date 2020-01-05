@@ -49,6 +49,7 @@
         private GameObject currentPlayer;
 
         private GameObject[] ammoSpawnList;
+        private bool hasInstantiateAmmo;
 
         void Awake()
         {
@@ -135,7 +136,7 @@
 
         void InitPlayer(PhotonPlayer newPlayer)
         {
-            Debug.Log("!! InitPlayer 0");
+            Debug.Log("!! InitPlayer: " + PhotonNetwork.isMasterClient);
             if (PhotonNetwork.isMasterClient && connected && sceneLoaded)
             {
                 // The master client tells everyone about the new player
@@ -143,16 +144,12 @@
                 props[PlayerPropNames.PLAYER_NR] = playerNr(newPlayer);
                 newPlayer.SetCustomProperties(props);
                 photonView.RPC("SpawnAvatar", newPlayer);
-
-                Debug.Log("!! InitPlayer 1");
             }
         }
 
         [PunRPC]
         void SpawnAvatar()
         {
-            Debug.Log("!! SpawnAvatar 1");
-
             if (!PhotonNetwork.player.CustomProperties.ContainsKey(PlayerPropNames.PLAYER_NR))
             {
                 Debug.LogError("Player does not have a PLAYER_NR property!");
@@ -165,12 +162,15 @@
             var player = PhotonNetwork.Instantiate(playerAvatar.name, trans.position, trans.rotation, 0, new object[] { name });
 
             currentPlayer = player.gameObject;
+            player.gameObject.GetComponent<NetworkObject>().playerName = name;
 
             if (VRFPS_GameController.instance != null)
             {
                 VRFPS_GameController.instance.myAvatarObject = currentPlayer;
                 VRFPS_GameController.instance.inGameScene = true;
                 VRFPS_GameController.instance.playerName = name;
+
+                Debug.Log("!! SpawnAvatar: " + VRFPS_GameController.instance.playerName);
 
                 if (VRFPS_NetworkController.instance.playersInRoom % 2 == 0)
                 {
@@ -189,11 +189,16 @@
                     camType2.cullingMask = maskToPlayer1;
                     camType3.cullingMask = maskToPlayer1;
 
-                    for (int i = 0; i < ammoSpawnList.Length; i++)
+                    if (!hasInstantiateAmmo)
                     {
-                        Debug.Log("Instantiate ammo: " + i);
-                        var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, new Vector3(ammoSpawnList[i].transform.position.x, ammoSpawnList[i].transform.position.y + 1, ammoSpawnList[i].transform.position.z), ammoSpawnList[i].transform.rotation, 0);
-                        ammo.gameObject.transform.parent = ammoSpawnList[i].transform;
+                        hasInstantiateAmmo = true;
+
+                        for (int i = 0; i < ammoSpawnList.Length; i++)
+                        {
+                            Debug.Log("Instantiate ammo: " + i);
+                            var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, new Vector3(ammoSpawnList[i].transform.position.x, ammoSpawnList[i].transform.position.y + 1, ammoSpawnList[i].transform.position.z), ammoSpawnList[i].transform.rotation, 0);
+                            ammo.gameObject.transform.parent = ammoSpawnList[i].transform;
+                        }
                     }
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 2")
@@ -276,7 +281,7 @@
                 VRFPS_NetworkController.instance.playersInRoom++;
             }
 
-            currentPlayer.GetComponent<NetworkObject>().playerName = playerName(PhotonNetwork.player);
+            //currentPlayer.GetComponent<NetworkObject>().playerName = playerName(PhotonNetwork.player);
 
             if (VRFPS_GameController.instance != null)
             {
