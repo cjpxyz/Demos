@@ -74,7 +74,8 @@ public class VRFPS_SceneManager : MonoBehaviour
 
     public void BackToMenu()
     {
-
+        SceneManager.UnloadSceneAsync("VRFPS_MapDungeon");
+        VRFPS_CanvasActions.instance.CallBackToMenu();
     }
 
     IEnumerator LoadingScene(string scene)

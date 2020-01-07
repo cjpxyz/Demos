@@ -15,6 +15,7 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject deathScreen;
     public GameObject loseScreen;
     public GameObject winScreen;
+    public GameObject drawScreen;
     public GameObject versionContainer;
     public GameObject mainBG;
 
@@ -35,6 +36,7 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject respawnBtn;
     public GameObject backToMenuLoseBtn;
     public GameObject backToMenuWinBtn;
+    public GameObject backToMenuDrawBtn;
 
     public GameObject countMS;
     public Color niceMsColor;

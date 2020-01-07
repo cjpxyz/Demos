@@ -1,5 +1,6 @@
 ﻿namespace VRTK.Examples
 {
+    using NetBase;
     using UnityEngine;
 
     public class RC_Car : MonoBehaviour
@@ -92,7 +93,7 @@
             //Vector3 movement = transform.forward * movementSpeed * Time.deltaTime;
             //rb.MovePosition(rb.position + movement);
 
-            float moveMod = Time.deltaTime * playerMoveMultiplier * playerSprintMultiplier;
+            /*float moveMod = Time.deltaTime * playerMoveMultiplier * playerSprintMultiplier;
 
             if(touchAxis.x == 0 && touchAxis.y == 0)
             {
@@ -115,14 +116,28 @@
             else if (touchAxis.x > 0.0)
             {
                 transform.Translate(transform.right * moveMod, Space.World);
+            }*/
+
+            bool setBool = false;
+
+            if (touchAxis.x == 0 && touchAxis.y == 0)
+            {
+                setBool = true;
+            }
+
+            if (VRFPS_NetworkController.instance.hasGO)
+            {
+                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetBool("returnToIdle", setBool);
+                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatX", touchAxis.x);
+                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatY", touchAxis.y);
             }
         }
 
         private void Turn()
         {
-            float turn = touchAxis.x * rotationSpeed * Time.deltaTime;
+            /*float turn = touchAxis.x * rotationSpeed * Time.deltaTime;
             Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
-            rb.MoveRotation(rb.rotation * turnRotation);
+            rb.MoveRotation(rb.rotation * turnRotation);*/
         }
 
         private void Jump()

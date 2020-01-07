@@ -32,6 +32,8 @@ public class VRFPS_GameController : MonoBehaviour
     public GameObject myAvatarObject;
     public string playerName;
 
+    public bool timeOver;
+
     void Awake()
     {
         if (!instance)
@@ -50,13 +52,33 @@ public class VRFPS_GameController : MonoBehaviour
     {
         if (isInMatch && !macthEnd)
         {
-            matchTime -= Time.deltaTime;
+            if (matchTime > 0)
+            {
+                matchTime -= Time.deltaTime;
 
-            int minutes = Mathf.FloorToInt(matchTime / 60F);
-            int seconds = Mathf.FloorToInt(matchTime - minutes * 60);
-            string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+                int minutes = Mathf.FloorToInt(matchTime / 60F);
+                int seconds = Mathf.FloorToInt(matchTime - minutes * 60);
+                string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
-            VRFPS_CanvasController.instance.roundTimeCount.GetComponent<Text>().text = niceTime;
+                VRFPS_CanvasController.instance.roundTimeCount.GetComponent<Text>().text = niceTime;
+                VRFPS_VRCanvasController.instance.roundTimeCount.GetComponent<Text>().text = niceTime;
+            }
+            else
+            {
+                timeOver = true;
+
+                if(timeOver == true)
+                {
+                    timeOver = false;
+
+                    VRFPS_CanvasActions.instance.CheckMatchResult(VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerTeam);
+                }
+
+                VRFPS_CanvasController.instance.roundTimeCount.GetComponent<Text>().text = "0:00";
+                VRFPS_VRCanvasController.instance.roundTimeCount.GetComponent<Text>().text = "0:00";
+            }
+
+            
             //VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + initialAmmoCount;
         }
     }

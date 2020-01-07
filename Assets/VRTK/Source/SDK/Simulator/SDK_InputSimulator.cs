@@ -4,6 +4,7 @@
     using UnityEngine.UI;
     using System;
     using System.Collections.Generic;
+    using NetBase;
 
     /// <summary>
     /// The `[VRSimulator_CameraRig]` prefab is a mock Camera Rig set up that can be used to develop with VRTK without the need for VR Hardware.
@@ -433,21 +434,55 @@
         protected virtual void UpdatePosition()
         {
             float moveMod = Time.deltaTime * playerMoveMultiplier * sprintMultiplier;
+            float floatX = 0;
+            float floatY = 0;
+            bool setBool = false;
+
             if (Input.GetKey(moveForward))
             {
+                floatX = 1;
                 transform.Translate(transform.forward * moveMod, Space.World);
+                setBool = false;
             }
             else if (Input.GetKey(moveBackward))
             {
+                floatX = -1;
                 transform.Translate(-transform.forward * moveMod, Space.World);
+                setBool = false;
+            }
+            else
+            {
+                floatX = 0;
+                //setBool = true;
             }
             if (Input.GetKey(moveLeft))
             {
+                floatY = 1;
                 transform.Translate(-transform.right * moveMod, Space.World);
+                setBool = false;
             }
             else if (Input.GetKey(moveRight))
             {
+                floatY = -1;
                 transform.Translate(transform.right * moveMod, Space.World);
+                setBool = false;
+            }
+            else
+            {
+                floatY = 0;
+                //setBool = true;
+            }
+
+            if(floatX == 0 && floatY == 0)
+            {
+                setBool = true;
+            }
+
+            if (VRFPS_NetworkController.instance.hasGO)
+            {
+                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetBool("returnToIdle", setBool);
+                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatX", floatX);
+                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatY", floatY);
             }
         }
 

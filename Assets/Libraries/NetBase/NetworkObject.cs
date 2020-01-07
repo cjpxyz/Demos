@@ -39,6 +39,8 @@
         public GameObject playerMesh;
         public Animator anim;
 
+        public bool deathAnimationIsEnd;
+
         Vector3 realPositon;
         Quaternion realRotation;
 
@@ -74,12 +76,10 @@
                 stream.SendNext(playerHealth);
                 stream.SendNext(playerKills);
                 stream.SendNext(playerDeaths);
+                stream.SendNext(deathAnimationIsEnd);
 
                 stream.SendNext(transform.position);
                 stream.SendNext(transform.rotation);
-
-                //stream.SendNext(playerNameLabel.activeSelf);
-                //stream.SendNext(playerMesh.activeSelf);
             }
             else
             {
@@ -89,12 +89,10 @@
                 playerHealth = (float)stream.ReceiveNext();
                 playerKills = (float)stream.ReceiveNext();
                 playerDeaths = (float)stream.ReceiveNext();
+                deathAnimationIsEnd = (bool)stream.ReceiveNext();
 
                 realPositon = (Vector3)stream.ReceiveNext();
                 realRotation = (Quaternion)stream.ReceiveNext();
-
-                //playerNameLabel.SetActive((bool)stream.ReceiveNext());
-                //playerMesh.SetActive((bool)stream.ReceiveNext());
             }
         }
 
@@ -112,10 +110,6 @@
                 transform.position = Vector3.Lerp(transform.position, realPositon, 0.1f);
                 transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
             }
-
-            //Debug.Log("playerBullets: " + playerBullets + " / playerHealth" + playerHealth);
-            //VRFPS_CanvasController.instance.healthBar.GetComponent<Image>().fillAmount = playerHealth / 100;
-            //VRFPS_CanvasController.instance.ammoCount.GetComponent<Text>().text = "00" + "!!" + playerBullets;
         }
 
         public void AddBullets(int quant)

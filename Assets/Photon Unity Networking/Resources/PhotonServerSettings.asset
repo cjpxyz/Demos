@@ -49,4 +49,6 @@ MonoBehaviour:
   - SpawnAvatar
   - CallToEveryone
   - DoDemageInOthers
+  - CallResetRoundInfos
+  - CallResetRoundInfosToOthers
   DisableAutoOpenWizard: 1

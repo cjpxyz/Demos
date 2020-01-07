@@ -11,6 +11,6 @@ public class VRFPS_AmmoSpawner : MonoBehaviour
 
     public void SpwanNewAmmo()
     {
-        PlayoVR.AvatarSpawnManager.instance.SpawnAmmo(transform);
+        PlayoVR.AvatarSpawnManager.instance.SpawnAmmo(transform, 1);
     }
 }

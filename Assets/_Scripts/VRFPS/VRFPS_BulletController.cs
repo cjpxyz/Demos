@@ -13,6 +13,8 @@ public class VRFPS_BulletController : MonoBehaviour
             {
                 VRFPS_NetworkController.instance.GetDemage(other.GetComponent<VRFPS_TeamController>().playerAvatar.GetComponent<NetworkObject>().playerName, VRFPS_GameController.instance.initialHitDemage);
                 Debug.Log(other.GetComponent<VRFPS_TeamController>().playerAvatar.GetComponent<NetworkObject>().playerName + " get hit!");
+
+                PhotonNetwork.Destroy(gameObject);
             }
         }
     }

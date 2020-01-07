@@ -47,8 +47,17 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: death
+  - Type: 9
+    SynchronizeType: 1
+    Name: idle
+  - Type: 1
+    SynchronizeType: 2
+    Name: floatX
+  - Type: 1
+    SynchronizeType: 2
+    Name: floatY
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
@@ -74,7 +83,6 @@ MonoBehaviour:
   ownershipTransfer: 0
   ObservedComponents:
   - {fileID: 1700606788452134579}
-  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
@@ -106,7 +114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2348818228999929833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.7, z: 0.25}
+  m_LocalPosition: {x: -0.25, y: 1.221, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4377145491159102556}
@@ -170,6 +178,7 @@ MonoBehaviour:
   playerNameLabel: {fileID: 0}
   playerMesh: {fileID: 0}
   anim: {fileID: 0}
+  deathAnimationIsEnd: 0
 --- !u!1 &2897987009029718892
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5609419870176929976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 0}
+  m_LocalPosition: {x: 0, y: 1.671, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5058188840647633176}
@@ -681,7 +690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6323452737523464611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 0}
+  m_LocalPosition: {x: 0, y: 1.671, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4355323377605201769}
@@ -805,6 +814,7 @@ MonoBehaviour:
   playerNameLabel: {fileID: 0}
   playerMesh: {fileID: 0}
   anim: {fileID: 0}
+  deathAnimationIsEnd: 0
 --- !u!1 &6325916463855259483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1206,7 @@ MonoBehaviour:
   playerNameLabel: {fileID: 3988892519917819623}
   playerMesh: {fileID: 1226231512921882721}
   anim: {fileID: 1176214409948139545}
+  deathAnimationIsEnd: 0
 --- !u!114 &1411435262157181547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,10 +1219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4389bcb38464b04481f891a6dbb378e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AvatarHead: {fileID: 0}
-  LeftHand: {fileID: 0}
-  RightHand: {fileID: 0}
-  AvatarTop: {fileID: 0}
+  AvatarHead: {fileID: 5609419870176929976}
+  LeftHand: {fileID: 2348818228999929833}
+  RightHand: {fileID: 8085486405038743349}
+  AvatarTop: {fileID: 5609419870176929976}
 --- !u!1 &7364009509855939613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,7 +1532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8085486405038743349}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.7, z: 0.25}
+  m_LocalPosition: {x: 0.25, y: 1.221, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8052650954893068253}
@@ -1585,6 +1596,7 @@ MonoBehaviour:
   playerNameLabel: {fileID: 0}
   playerMesh: {fileID: 0}
   anim: {fileID: 0}
+  deathAnimationIsEnd: 0
 --- !u!1 &8946380358428556316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,7 +1710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213512920971450, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.238
+      value: -3.439
       objectReference: {fileID: 0}
     - target: {fileID: 4213512920971450, guid: b4243624fc7192e4997e36f6ffcab7bd, type: 3}
       propertyPath: m_LocalPosition.z

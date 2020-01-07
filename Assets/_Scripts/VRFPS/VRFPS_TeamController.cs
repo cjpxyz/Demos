@@ -15,7 +15,7 @@ public class VRFPS_TeamController : MonoBehaviour
     {
         if (VRFPS_CanvasActions.instance != null)
         {
-            VRFPS_CanvasActions.instance.GetHit(myTeam, name);
+            //VRFPS_CanvasActions.instance.GetHit(myTeam, name);
         }
     }
 

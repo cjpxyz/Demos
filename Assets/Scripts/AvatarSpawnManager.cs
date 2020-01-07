@@ -8,6 +8,14 @@
     using VRTK;
     using Hashtable = ExitGames.Client.Photon.Hashtable;
 
+    public enum GameMode
+    {
+        Mode1x1,
+        Mode2x2,
+        Mode3x3,
+        Mode4x4
+    }
+
     public class AvatarSpawnManager : Photon.PunBehaviour
     {
         public static AvatarSpawnManager instance;
@@ -34,6 +42,8 @@
         public Camera camType2;
         public Camera camType3;
 
+        public GameMode currentGameMode;
+
         public LayerMask maskToPlayer1;
         public LayerMask maskToPlayer2;
         public LayerMask maskToPlayer3;
@@ -42,6 +52,16 @@
         public LayerMask maskToPlayer6;
         public LayerMask maskToPlayer7;
         public LayerMask maskToPlayer8;
+
+        public GameObject spawnTeam1a;
+        public GameObject spawnTeam1b;
+        public GameObject spawnTeam1c;
+        public GameObject spawnTeam1d;
+
+        public GameObject spawnTeam2a;
+        public GameObject spawnTeam2b;
+        public GameObject spawnTeam2c;
+        public GameObject spawnTeam2d;
 
         private GameObject[] spawnPoints;
         private bool sceneLoaded = false;
@@ -78,24 +98,6 @@
         void Start()
         {
             ammoSpawnList = GameObject.FindGameObjectsWithTag("SpawnBullets");
-        }
-
-        void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            /*if (stream.isWriting)
-            {
-                for (int i = 0; i < gunList.Count; i++)
-                {
-                    stream.SendNext(gunList[i].activeSelf);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < gunList.Count; i++)
-                {
-                    gunList[i].SetActive((bool)stream.ReceiveNext());
-                }
-            }*/
         }
 
         void OnEnable()
@@ -155,14 +157,60 @@
                 Debug.LogError("Player does not have a PLAYER_NR property!");
                 return;
             }
-            int nr = (int)PhotonNetwork.player.CustomProperties[PlayerPropNames.PLAYER_NR];
+            //int nr = (int)PhotonNetwork.player.CustomProperties[PlayerPropNames.PLAYER_NR];
             // Create a new player at the appropriate spawn spot
-            var trans = spawnPoints[nr].transform;
+            //var trans = spawnPoints[nr].transform;
+
+            var trans = spawnTeam1a.transform;
+
+            if (VRFPS_NetworkController.instance.playersInRoom == 0)
+            {
+                trans = spawnTeam1a.transform;
+                currentGameMode = GameMode.Mode1x1;
+            }
+            else if (VRFPS_NetworkController.instance.playersInRoom == 1)
+            {
+                trans = spawnTeam2a.transform;
+                currentGameMode = GameMode.Mode1x1;
+            }
+            else if (VRFPS_NetworkController.instance.playersInRoom == 2)
+            {
+                trans = spawnTeam1b.transform;
+                currentGameMode = GameMode.Mode2x2;
+            }
+            else if (VRFPS_NetworkController.instance.playersInRoom == 3)
+            {
+                trans = spawnTeam2b.transform;
+                currentGameMode = GameMode.Mode2x2;
+            }
+            else if (VRFPS_NetworkController.instance.playersInRoom == 4)
+            {
+                trans = spawnTeam1c.transform;
+                currentGameMode = GameMode.Mode3x3;
+            }
+            else if (VRFPS_NetworkController.instance.playersInRoom == 5)
+            {
+                trans = spawnTeam2c.transform;
+                currentGameMode = GameMode.Mode3x3;
+            }
+            else if (VRFPS_NetworkController.instance.playersInRoom == 6)
+            {
+                trans = spawnTeam1d.transform;
+                currentGameMode = GameMode.Mode4x4;
+            }
+            else if (VRFPS_NetworkController.instance.playersInRoom == 7)
+            {
+                trans = spawnTeam2d.transform;
+                currentGameMode = GameMode.Mode4x4;
+            }
+
             var name = PhotonNetwork.playerName;
             var player = PhotonNetwork.Instantiate(playerAvatar.name, trans.position, trans.rotation, 0, new object[] { name });
 
             currentPlayer = player.gameObject;
             player.gameObject.GetComponent<NetworkObject>().playerName = name;
+            VRFPS_NetworkController.instance.currentGO = currentPlayer;
+            VRFPS_NetworkController.instance.hasGO = true;
 
             if (VRFPS_GameController.instance != null)
             {
@@ -189,6 +237,8 @@
                     camType2.cullingMask = maskToPlayer1;
                     camType3.cullingMask = maskToPlayer1;
 
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 1;
+
                     if (!hasInstantiateAmmo)
                     {
                         hasInstantiateAmmo = true;
@@ -208,6 +258,8 @@
                     camType1.cullingMask = maskToPlayer2;
                     camType2.cullingMask = maskToPlayer2;
                     camType3.cullingMask = maskToPlayer2;
+
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 2;
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 3")
                 {
@@ -216,6 +268,8 @@
                     camType1.cullingMask = maskToPlayer3;
                     camType2.cullingMask = maskToPlayer3;
                     camType3.cullingMask = maskToPlayer3;
+
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 1;
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 4")
                 {
@@ -224,6 +278,8 @@
                     camType1.cullingMask = maskToPlayer4;
                     camType2.cullingMask = maskToPlayer4;
                     camType3.cullingMask = maskToPlayer4;
+
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 2;
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 5")
                 {
@@ -232,6 +288,8 @@
                     camType1.cullingMask = maskToPlayer5;
                     camType2.cullingMask = maskToPlayer5;
                     camType3.cullingMask = maskToPlayer5;
+
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 1;
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 6")
                 {
@@ -240,6 +298,8 @@
                     camType1.cullingMask = maskToPlayer6;
                     camType2.cullingMask = maskToPlayer6;
                     camType3.cullingMask = maskToPlayer6;
+
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 2;
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 7")
                 {
@@ -248,6 +308,8 @@
                     camType1.cullingMask = maskToPlayer7;
                     camType2.cullingMask = maskToPlayer7;
                     camType3.cullingMask = maskToPlayer7;
+
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 1;
                 }
                 else if (VRFPS_GameController.instance.playerName == "Player 8")
                 {
@@ -256,6 +318,8 @@
                     camType1.cullingMask = maskToPlayer8;
                     camType2.cullingMask = maskToPlayer8;
                     camType3.cullingMask = maskToPlayer8;
+
+                    currentPlayer.GetComponent<NetworkObject>().playerTeam = 2;
                 }
             }
 
@@ -285,60 +349,72 @@
 
             if (VRFPS_GameController.instance != null)
             {
-                VRFPS_NetworkController.instance.currentGO = currentPlayer;
-
                 if (VRFPS_NetworkController.instance.playersInRoom == 1)
                 {
-                    VRFPS_NetworkController.instance.player1 = currentPlayer;
+                    VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 1");
                 }
                 else if (VRFPS_NetworkController.instance.playersInRoom == 2)
                 {
-                    VRFPS_NetworkController.instance.player2 = currentPlayer;
+                    VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 2");
                 }
                 else if (VRFPS_NetworkController.instance.playersInRoom == 3)
                 {
-                    VRFPS_NetworkController.instance.player3 = currentPlayer;
+                    VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
                     VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 3");
                 }
                 else if (VRFPS_NetworkController.instance.playersInRoom == 4)
                 {
-                    VRFPS_NetworkController.instance.player4 = currentPlayer;
+                    VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
                     VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
                     VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 4");
                 }
                 else if (VRFPS_NetworkController.instance.playersInRoom == 5)
                 {
-                    VRFPS_NetworkController.instance.player5 = currentPlayer;
+                    VRFPS_NetworkController.instance.player5 = GameObject.Find("Player 5");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
                     VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
                     VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
                     VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 5");
                 }
                 else if (VRFPS_NetworkController.instance.playersInRoom == 6)
                 {
-                    VRFPS_NetworkController.instance.player6 = currentPlayer;
+                    VRFPS_NetworkController.instance.player6 = GameObject.Find("Player 6");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
                     VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
                     VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
                     VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
                     VRFPS_NetworkController.instance.player5 = GameObject.Find("Player 5");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 6");
                 }
                 else if (VRFPS_NetworkController.instance.playersInRoom == 7)
                 {
-                    VRFPS_NetworkController.instance.player7 = currentPlayer;
+                    VRFPS_NetworkController.instance.player7 = GameObject.Find("Player 7");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
                     VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
                     VRFPS_NetworkController.instance.player3 = GameObject.Find("Player 3");
                     VRFPS_NetworkController.instance.player4 = GameObject.Find("Player 4");
                     VRFPS_NetworkController.instance.player5 = GameObject.Find("Player 5");
                     VRFPS_NetworkController.instance.player6 = GameObject.Find("Player 6");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 7");
                 }
                 else if (VRFPS_NetworkController.instance.playersInRoom == 8)
                 {
-                    VRFPS_NetworkController.instance.player8 = currentPlayer;
+                    VRFPS_NetworkController.instance.player8 = GameObject.Find("Player 8");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
                     VRFPS_NetworkController.instance.player1 = GameObject.Find("Player 1");
                     VRFPS_NetworkController.instance.player2 = GameObject.Find("Player 2");
@@ -347,14 +423,22 @@
                     VRFPS_NetworkController.instance.player5 = GameObject.Find("Player 5");
                     VRFPS_NetworkController.instance.player6 = GameObject.Find("Player 6");
                     VRFPS_NetworkController.instance.player7 = GameObject.Find("Player 7");
+
+                    //VRFPS_NetworkController.instance.currentGO = GameObject.Find("Player 8");
                 }
             }
         }
 
-        public void SpawnAmmo(Transform parent)
+        public void SpawnAmmo(Transform parent, int type)
         {
             var ammo = PhotonNetwork.Instantiate(ammoPrefab.name, new Vector3(parent.position.x, parent.position.y + 1, parent.position.z), parent.rotation, 0);
-            ammo.gameObject.transform.parent = parent;
+            Debug.Log("intanciar em: X: " + parent.position.x + " / Y: " + parent.position.y + " / Z: " + parent.position.z);
+            Debug.Log("instanciou em: X: " + ammo.gameObject.transform.position.x + " / Y: " + ammo.gameObject.transform.position.y + " / Z: " + ammo.gameObject.transform.position.z);
+
+            if (type == 1)
+            {
+                ammo.gameObject.transform.parent = parent;
+            }
         }
 
         private string playerName(PhotonPlayer ply)
