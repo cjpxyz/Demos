@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b8724391dd0e14da024e9e1f1f1329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDeath: 0
 --- !u!114 &1873716751722319915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712d9487993a9f04aa47d4beef13ad54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialAmmoCount: 10
+  initialAmmoCount: 60
   initialHealth: 100
   initialHitDemage: 20
   initialTotalRounds: 3
@@ -75,6 +76,7 @@ MonoBehaviour:
   inGameScene: 0
   myAvatarObject: {fileID: 0}
   playerName: 
+  timeOver: 0
 --- !u!114 &44405501
 MonoBehaviour:
   m_ObjectHideFlags: 0
