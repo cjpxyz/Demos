@@ -13,7 +13,7 @@
         void Start()
         {
             // Add velocity to the bullet
-            GetComponent<Rigidbody>().velocity = transform.forward * 12;
+            GetComponent<Rigidbody>().velocity = transform.forward * 50;
             timeCreated = Time.time;
             shouldDestroy = false;
         }
