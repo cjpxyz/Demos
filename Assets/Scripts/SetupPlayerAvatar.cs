@@ -1,51 +1,71 @@
-﻿namespace PlayoVR {
+﻿namespace PlayoVR
+{
     using UnityEngine;
     using VRTK;
     using NetBase;
 
-    public class SetupPlayerAvatar : Photon.MonoBehaviour {
+    public class SetupPlayerAvatar : Photon.MonoBehaviour
+    {
         [Tooltip("The avatar's left hand to sync with the left controller. If empty, a child named 'Left Hand' will be used.")]
         public GameObject LeftHand;
         [Tooltip("The avatar's right hand to sync with the right controller. If empty, a child named 'Right Hand' will be used.")]
         public GameObject RightHand;
 
-        void OnPhotonInstantiate(PhotonMessageInfo info) {
+        void OnPhotonInstantiate(PhotonMessageInfo info)
+        {
             string name = photonView.instantiationData[0].ToString();
-            InitPlayer(name);
+
+            InitPlayer(VRFPS_GameController.instance.fakePlayerName);
+            ChangeGameObjectName(name);
         }
 
-        private void InitPlayer(string name) {
-            // Set player's name
+        private void ChangeGameObjectName(string name)
+        {
             gameObject.name = name;
+        }
+
+        private void InitPlayer(string name)
+        {
+            // Set player's name
             var label = NetUtils.Find(gameObject, "Top/Label");
-            if (label != null) {
-                if (!photonView.isMine) {
+            if (label != null)
+            {
+                if (!photonView.isMine)
+                {
                     TMPro.TextMeshPro text = label.GetComponent<TMPro.TextMeshPro>();
-                    if (text != null) {
+                    if (text != null)
+                    {
                         text.text = name;
                     }
-                } else {
+                }
+                else
+                {
                     // We deactivate the label because we don't show a label on our own local avatar
                     label.SetActive(false);
                 }
             }
             var icon = NetUtils.Find(gameObject, "Top/Icon");
-            if (icon != null && photonView.isMine) {
+            if (icon != null && photonView.isMine)
+            {
                 // We deactivate the icon because we don't show a speaker icon on our own local avatar
                 icon.SetActive(false);
             }
         }
 
-        void Awake() {
+        void Awake()
+        {
             VRTK_SDKManager.instance.AddBehaviourToToggleOnLoadedSetupChange(this);
         }
 
-        void OnDestroy() {
+        void OnDestroy()
+        {
             VRTK_SDKManager.instance.RemoveBehaviourToToggleOnLoadedSetupChange(this);
         }
 
-        void OnEnable() {
-            if (!photonView.isMine) {
+        void OnEnable()
+        {
+            if (!photonView.isMine)
+            {
                 return;
             }
             // Move the camera rig to where the player was spawned
@@ -60,9 +80,11 @@
             SetUpControllerHandLink(RightHand, VRTK_DeviceFinder.Devices.RightController);
         }
 
-        private static void SetUpControllerHandLink(GameObject avatarComponent, VRTK_DeviceFinder.Devices device) {
+        private static void SetUpControllerHandLink(GameObject avatarComponent, VRTK_DeviceFinder.Devices device)
+        {
             var photonView = avatarComponent.GetComponent<PhotonView>();
-            if (photonView == null) {
+            if (photonView == null)
+            {
                 Debug.LogError(string.Format("The network representation '{0}' has no {1} component on it.", avatarComponent.name, typeof(PhotonView).Name));
                 return;
             }

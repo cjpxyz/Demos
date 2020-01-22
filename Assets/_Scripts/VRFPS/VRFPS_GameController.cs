@@ -31,6 +31,7 @@ public class VRFPS_GameController : MonoBehaviour
     public bool inGameScene;
     public GameObject myAvatarObject;
     public string playerName;
+    public string fakePlayerName;
 
     public bool timeOver;
 
@@ -103,7 +104,7 @@ public class VRFPS_GameController : MonoBehaviour
         yield return new WaitUntil(() => isConnectedInPhoton);
         VRFPS_CanvasActions.instance.SemiSetInitialGameInfos();
 
-        canStartMacth = true;
+        //canStartMacth = true;
 
         yield return new WaitUntil(() => canStartMacth);
         VRFPS_CanvasController.instance.mainBG.GetComponent<Image>().DOFade(0.9f, 2f);

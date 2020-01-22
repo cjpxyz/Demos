@@ -145,6 +145,11 @@ public class VRFPS_CanvasActions : MonoBehaviour
         }
     }
 
+    public void CallChangeTeamAndNameScreen()
+    {
+
+    }
+
     public void SemiSetInitialGameInfos()
     {
         //Normal Canvas

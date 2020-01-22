@@ -55,6 +55,11 @@ public class VRFPS_SceneManager : MonoBehaviour
         }
     }
 
+    public void ChooseTeamAndName()
+    {
+        VRFPS_CanvasActions.instance.CallChangeTeamAndNameScreen();
+    }
+
     public void PlayGame()
     {
         Debug.Log("PlayGame!");
