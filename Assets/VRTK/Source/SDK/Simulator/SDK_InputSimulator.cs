@@ -478,11 +478,14 @@
                 setBool = true;
             }
 
-            if (VRFPS_NetworkController.instance.hasGO)
+            if (PhotonNetwork.connected)
             {
-                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetBool("returnToIdle", setBool);
-                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatX", floatX);
-                VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatY", floatY);
+                if (VRFPS_NetworkController.instance.hasGO)
+                {
+                    VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetBool("returnToIdle", setBool);
+                    VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatX", floatX);
+                    VRFPS_NetworkController.instance.currentGO.GetComponent<NetworkObject>().playerMesh.GetComponent<Animator>().SetFloat("floatY", floatY);
+                }
             }
         }
 

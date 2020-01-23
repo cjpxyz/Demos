@@ -143,7 +143,9 @@ namespace VRTK
                 {
                     if (previousClonedObject == null)
                     {
-                        grabbableObject = Instantiate(objectToGrab);
+                        yield return new WaitUntil(() => PhotonNetwork.inRoom);
+                        GameObject ob = PhotonNetwork.Instantiate(objectToGrab.name, transform.position, transform.rotation, 0);
+                        grabbableObject = ob.GetComponent<VRTK_InteractableObject>();
                         previousClonedObject = grabbableObject;
                     }
                     else

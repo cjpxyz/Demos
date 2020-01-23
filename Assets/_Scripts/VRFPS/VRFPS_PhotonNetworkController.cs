@@ -55,7 +55,7 @@ public class VRFPS_PhotonNetworkController : Photon.MonoBehaviour
 
     public void AfterPhotonInLobby()
     {
-        VRFPS_PhotonFindRoomController.instance.TryJoinRoom(1, 1);
-        Debug.Log("Entrou no lobby tentar criar sala!");
+        //VRFPS_PhotonFindRoomController.instance.TryJoinRoom(1, 1);
+        //Debug.Log("Entrou no lobby tentar criar sala!");
     }
 }

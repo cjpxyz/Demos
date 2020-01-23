@@ -66,6 +66,8 @@
     <Compile Include="Assets\_Scripts\VRFPS\HookDetector.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\SmoothSync.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\SyncGameObject.cs" />
+    <Compile Include="Assets\_Scripts\VRFPS\TryEverEnableMesh.cs" />
+    <Compile Include="Assets\_Scripts\VRFPS\TryEverEnableParticlesRenderer.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_AmmoSpawner.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_BulletController.cs" />
     <Compile Include="Assets\_Scripts\VRFPS\VRFPS_CanvasActions.cs" />

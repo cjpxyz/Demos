@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class VRFPS_SceneManager : MonoBehaviour
+public class VRFPS_SceneManager : Photon.PunBehaviour
 {
     public static VRFPS_SceneManager instance;
 
@@ -55,12 +55,95 @@ public class VRFPS_SceneManager : MonoBehaviour
         }
     }
 
-    public void ChooseTeamAndName()
+    public override void OnCreatedRoom()
     {
-        VRFPS_CanvasActions.instance.CallChangeTeamAndNameScreen();
+        Debug.Log("!! OnCreatedRoom");
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        AfterPhotonInLobby();
+        Debug.Log("OnConnectedToMaster");
+    }
+
+    public override void OnJoinedLobby()
+    {
+        AfterPhotonInLobby();
+        Debug.Log("Entrou no Lobby do Photon!");
+    }
+
+    public void AfterPhotonInLobby()
+    {
+        Debug.Log("Entrou no lobby tentar criar sala!");
+        CallChooseGameMode();
+    }
+
+    public void CallChooseGameMode()
+    {
+        VRFPS_CanvasActions.instance.CallChooseGameScreen();
+        Debug.Log("!! CallChooseGameMode");
+    }
+
+    public void CallChooseName()
+    {
+        VRFPS_CanvasActions.instance.CallChangeNameScreen();
+    }
+
+    /*public void CallChooseTeam()
+    {
+        VRFPS_CanvasActions.instance.CallChangeTeamScreen();
+    }*/
+
+    public void CallChooseJoinBtn()
+    {
+        VRFPS_CanvasActions.instance.CallChangeJoinScreen();
+    }
+
+    public void ChooseGameMode(int mode)
+    {
+        VRFPS_GameController.instance.currentGameMode = mode;
+        CallChooseName();
+    }
+
+    public void ChooseName(GameObject inputName)
+    {
+        VRFPS_GameController.instance.currentPlayerRealName = inputName.GetComponent<InputField>().text;
+
+        if (inputName.GetComponent<InputField>().text != "")
+        {
+            CallChooseJoinBtn();
+        }
+    }
+
+    public void ChooseTeam(int team)
+    {
+        VRFPS_GameController.instance.currentPlayerTeam = team;
+        CallChooseJoinBtn();
+    }
+
+    public void CallTryJoinRoom()
+    {
+        Debug.Log("CallTryJoinRoom: " + VRFPS_GameController.instance.currentGameMode);
+
+        VRFPS_CanvasController.instance.roomConfigsContainer.SetActive(false);
+        //VRFPS_VRCanvasController.instance.roomConfigsContainer.SetActive(false);
+
+        RealPlayGame();
     }
 
     public void PlayGame()
+    {
+        Debug.Log("PlayGame!");
+
+        ConnectInPhoton();
+    }
+
+    public void ConnectInPhoton()
+    {
+        VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
+    }
+
+    public void RealPlayGame()
     {
         Debug.Log("PlayGame!");
 
@@ -96,7 +179,8 @@ public class VRFPS_SceneManager : MonoBehaviour
         async = SceneManager.LoadSceneAsync("VRFPS_MapDungeon", LoadSceneMode.Additive);//add the next scene name that to be loaded
         yield return async;
 
-        VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
+        VRFPS_PhotonFindRoomController.instance.TryJoinRoom(VRFPS_GameController.instance.currentGameMode, 1);
+        //VRFPS_PhotonNetworkController.instance.ConnectToPhoton();
 
         yield return new WaitUntil(() => VRFPS_GameController.instance.isConnectedInPhoton);
         VRFPS_CanvasController.instance.loadingScreen.SetActive(false);

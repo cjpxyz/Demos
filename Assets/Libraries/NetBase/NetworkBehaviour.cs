@@ -71,7 +71,7 @@
 
             if (PhotonNetwork.connected)
             {
-                PhotonNetwork.room.SetCustomProperties(props);
+                //PhotonNetwork.room.SetCustomProperties(props);
             }
 
             Debug.Log("SNT PROPS: " + content.ToString());

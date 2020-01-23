@@ -18,6 +18,8 @@
         {
             base.Grabbed(grabbingObject);
             controllerReference = VRTK_ControllerReference.GetControllerReference(grabbingObject.controllerEvents.gameObject);
+
+            Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!");
         }
 
         public override void Ungrabbed(VRTK_InteractGrab previousGrabbingObject)
@@ -31,6 +33,16 @@
             base.OnEnable();
             controllerReference = null;
             interactableRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+            if (GetComponent<PhotonView>().ownerId == PhotonNetwork.player.ID)
+            {
+                Debug.Log("1 !!!!!!!!!!!!!!!!!!!!!!!");
+            }
+            else
+            {
+                Debug.Log("2 !!!!!!!!!!!!!!!!!!!!!!!");
+                GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.player.ID);
+            }
         }
 
         private void OnCollisionEnter(Collision collision)

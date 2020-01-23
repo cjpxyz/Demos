@@ -145,9 +145,44 @@ public class VRFPS_CanvasActions : MonoBehaviour
         }
     }
 
-    public void CallChangeTeamAndNameScreen()
+    public void CallChooseGameScreen()
     {
+        VRFPS_CanvasController.instance.initialMenuScreen.SetActive(false);
+        VRFPS_CanvasController.instance.roomConfigsContainer.SetActive(true);
+        VRFPS_CanvasController.instance.chooseMode.SetActive(true);
+        VRFPS_CanvasController.instance.chooseName.SetActive(false);
+        VRFPS_CanvasController.instance.chooseTeam.SetActive(false);
+        VRFPS_CanvasController.instance.chooseBtn.SetActive(false);
+    }
 
+    public void CallChangeNameScreen()
+    {
+        VRFPS_CanvasController.instance.initialMenuScreen.SetActive(false);
+        VRFPS_CanvasController.instance.roomConfigsContainer.SetActive(true);
+        VRFPS_CanvasController.instance.chooseMode.SetActive(false);
+        VRFPS_CanvasController.instance.chooseName.SetActive(true);
+        VRFPS_CanvasController.instance.chooseTeam.SetActive(false);
+        VRFPS_CanvasController.instance.chooseBtn.SetActive(false);
+    }
+
+    public void CallChangeTeamScreen()
+    {
+        VRFPS_CanvasController.instance.initialMenuScreen.SetActive(false);
+        VRFPS_CanvasController.instance.roomConfigsContainer.SetActive(true);
+        VRFPS_CanvasController.instance.chooseMode.SetActive(false);
+        VRFPS_CanvasController.instance.chooseName.SetActive(false);
+        VRFPS_CanvasController.instance.chooseTeam.SetActive(true);
+        VRFPS_CanvasController.instance.chooseBtn.SetActive(false);
+    }
+
+    public void CallChangeJoinScreen()
+    {
+        VRFPS_CanvasController.instance.initialMenuScreen.SetActive(false);
+        VRFPS_CanvasController.instance.roomConfigsContainer.SetActive(true);
+        VRFPS_CanvasController.instance.chooseMode.SetActive(false);
+        VRFPS_CanvasController.instance.chooseName.SetActive(false);
+        VRFPS_CanvasController.instance.chooseTeam.SetActive(false);
+        VRFPS_CanvasController.instance.chooseBtn.SetActive(true);
     }
 
     public void SemiSetInitialGameInfos()

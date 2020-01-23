@@ -18,6 +18,15 @@ public class VRFPS_CanvasController : MonoBehaviour
     public GameObject drawScreen;
     public GameObject versionContainer;
     public GameObject mainBG;
+    public GameObject playBtn;
+
+    [Header("Configs")]
+    [Space(2)]
+    public GameObject roomConfigsContainer;
+    public GameObject chooseMode;
+    public GameObject chooseTeam;
+    public GameObject chooseName;
+    public GameObject chooseBtn;
 
     [Header("Gameplay")]
     [Space(2)]
